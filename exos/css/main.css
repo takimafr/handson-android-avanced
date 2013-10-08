@@ -1,0 +1,67 @@
+body {
+  font-size: 14px;
+}
+
+.masthead {
+  padding: 20px 0 0px 0;
+	text-align: center;
+  box-shadow: 0px 2px 15px #888888;
+  background-image: url('../img/android.jpg');
+  background-repeat: no-repeat;
+  background-position: center bottom left;
+  text-align: right;
+}
+
+.masthead h1 {
+	font-size: 80px;
+}
+
+.masthead p {
+  margin-top: 25px;
+	font-size: 30px;
+}
+
+.masthead .excilys {
+  margin-top: 40px;  
+}
+
+.masthead .excilys span {
+  font-size: 25px;
+}
+
+.subhead h1 {
+  text-align: center;
+  margin-top: 50px;
+  font-size: 80px;
+}
+
+.container {
+  padding: 20px;
+}
+
+section {
+  padding-top: 30px;
+}
+
+section p {
+  font-size: 14px;
+  color: #333;
+  line-height: 20px;
+}
+
+section h1 {
+  margin-top: 20px;
+  margin-bottom: 30px;
+}
+
+section ul li {
+  margin-bottom: 10px;
+}
+
+section ol li {
+  margin-bottom: 10px;
+}
+
+section dd {
+  margin-bottom: 10px;
+}

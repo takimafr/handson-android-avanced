@@ -1,0 +1,443 @@
+@font-face {
+    font-family: 'Roboto';
+    src: url('Roboto-Regular-webfont.eot');
+    src: url('Roboto-Regular-webfont.eot?#iefix') format('embedded-opentype'),
+    url('Roboto-Regular-webfont.woff') format('woff'),
+    url('Roboto-Regular-webfont.ttf') format('truetype'),
+    url('Roboto-Regular-webfont.svg#RobotoRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Roboto';
+    src: url('Roboto-Italic-webfont.eot');
+    src: url('Roboto-Italic-webfont.eot?#iefix') format('embedded-opentype'),
+    url('Roboto-Italic-webfont.woff') format('woff'),
+    url('Roboto-Italic-webfont.ttf') format('truetype'),
+    url('Roboto-Italic-webfont.svg#RobotoItalic') format('svg');
+    font-weight: normal;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Roboto';
+    src: url('Roboto-Bold-webfont.eot');
+    src: url('Roboto-Bold-webfont.eot?#iefix') format('embedded-opentype'),
+    url('Roboto-Bold-webfont.woff') format('woff'),
+    url('Roboto-Bold-webfont.ttf') format('truetype'),
+    url('Roboto-Bold-webfont.svg#RobotoBold') format('svg');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Roboto';
+    src: url('Roboto-BoldItalic-webfont.eot');
+    src: url('Roboto-BoldItalic-webfont.eot?#iefix') format('embedded-opentype'),
+    url('Roboto-BoldItalic-webfont.woff') format('woff'),
+    url('Roboto-BoldItalic-webfont.ttf') format('truetype'),
+    url('Roboto-BoldItalic-webfont.svg#RobotoBoldItalic') format('svg');
+    font-weight: bold;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Roboto';
+    src: url('Roboto-Thin-webfont.eot');
+    src: url('Roboto-Thin-webfont.eot?#iefix') format('embedded-opentype'),
+    url('Roboto-Thin-webfont.woff') format('woff'),
+    url('Roboto-Thin-webfont.ttf') format('truetype'),
+    url('Roboto-Thin-webfont.svg#RobotoThin') format('svg');
+    font-weight: 200;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Roboto';
+    src: url('Roboto-ThinItalic-webfont.eot');
+    src: url('Roboto-ThinItalic-webfont.eot?#iefix') format('embedded-opentype'),
+    url('Roboto-ThinItalic-webfont.woff') format('woff'),
+    url('Roboto-ThinItalic-webfont.ttf') format('truetype'),
+    url('Roboto-ThinItalic-webfont.svg#RobotoThinItalic') format('svg'); (under the Apache Software License). 
+    font-weight: 200;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Roboto';
+    src: url('Roboto-Light-webfont.eot');
+    src: url('Roboto-Light-webfont.eot?#iefix') format('embedded-opentype'),
+    url('Roboto-Light-webfont.woff') format('woff'),
+    url('Roboto-Light-webfont.ttf') format('truetype'),
+    url('Roboto-Light-webfont.svg#RobotoLight') format('svg');
+    font-weight: 100;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Roboto';
+    src: url('Roboto-LightItalic-webfont.eot');
+    src: url('Roboto-LightItalic-webfont.eot?#iefix') format('embedded-opentype'),
+    url('Roboto-LightItalic-webfont.woff') format('woff'),
+    url('Roboto-LightItalic-webfont.ttf') format('truetype'),
+    url('Roboto-LightItalic-webfont.svg#RobotoLightItalic') format('svg');
+    font-weight: 100;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Roboto';
+    src: url('Roboto-Medium-webfont.eot');
+    src: url('Roboto-Medium-webfont.eot?#iefix') format('embedded-opentype'),
+    url('Roboto-Medium-webfont.woff') format('woff'),
+    url('Roboto-Medium-webfont.ttf') format('truetype'),
+    url('Roboto-Medium-webfont.svg#RobotoMedium') format('svg');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Roboto';
+    src: url('Roboto-MediumItalic-webfont.eot');
+    src: url('Roboto-MediumItalic-webfont.eot?#iefix') format('embedded-opentype'),
+    url('Roboto-MediumItalic-webfont.woff') format('woff'),
+    url('Roboto-MediumItalic-webfont.ttf') format('truetype'),
+    url('Roboto-MediumItalic-webfont.svg#RobotoMediumItalic') format('svg');
+    font-weight: 300;
+    font-style: italic;
+}
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+body {
+    line-height: 1;
+}
+ul {
+    list-style: none;
+}
+blockquote, q {
+    quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content: '';
+    content: none;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+
+
+
+/* BEGINNING CSS */
+
+body {
+    font-family: 'PT Sans', sans-serif;
+    min-height: 740px;
+    
+    background: rgb(215, 215, 215);
+    background: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 500, from(rgb(240, 240, 240)), to(rgb(190, 190, 190)));
+    background: -webkit-radial-gradient(rgb(240, 240, 240), rgb(190, 190, 190));
+    background:    -moz-radial-gradient(rgb(240, 240, 240), rgb(190, 190, 190));
+    background:     -ms-radial-gradient(rgb(240, 240, 240), rgb(190, 190, 190));
+    background:      -o-radial-gradient(rgb(240, 240, 240), rgb(190, 190, 190));
+    background:         radial-gradient(rgb(240, 240, 240), rgb(190, 190, 190));    
+}
+
+.impress-enabled .step {
+    margin: 0;
+    opacity: 0.3;
+
+    -webkit-transition: opacity 1s;
+    -moz-transition:    opacity 1s;
+    -ms-transition:     opacity 1s;
+    -o-transition:      opacity 1s;
+    transition:         opacity 1s;
+}
+
+.impress-enabled .step.active { opacity: 1 }
+
+.big { text-transform: uppercase; margin: 0; padding: 0; }
+.bold { font-weight: 800; }
+.light { font-weight: 200; :}
+
+a {
+    text-decoration: none;
+    color: #11a6d4;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.step {
+    position: relative;
+    width: 900px;
+    padding: 40px;
+    margin: 20px auto;
+
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing:    border-box;
+    -ms-box-sizing:     border-box;
+    -o-box-sizing:      border-box;
+    box-sizing:         border-box;
+
+    font-family: "Helvetica", 'PT Serif', georgia, serif;
+    line-height: 1.5;
+    font-weight: 200;
+
+}
+
+.step ul {
+    font-size: 30px;
+}
+
+.step h1 {
+    font-size: 60px;
+    line-height: 2;
+}
+
+.step h2 {
+    font-size: 30px;
+    line-height: 2;
+}
+
+.title2 {
+    width: 950px;
+    text-align: center;
+}
+
+.title2 h1 {
+    font-size: 60px;
+    font-weight: bold;
+    margin-bottom: 30px;
+}
+
+/* Slide Title */
+#title h1 {
+    font-size: 90px;
+    width: 900px;
+    font-weight: 200;
+    line-height: 0.7;
+}
+
+#title h2 {
+    text-align: right;
+    font-size: 50px;
+    font-weight: bold;
+}
+
+/* Slide Speaker */
+#speaker h1 {
+    font-weight: 400;
+}
+
+/* Slide Android ? */
+#android {
+    height: 270px;
+    font-size: 60px;
+    background-image: url('../img/android_vector.jpg');
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+}
+
+/* Slide Aim */
+#aim h1 {
+    font-size: 110px;
+    line-height: 0.7;
+    font-weight: bold;
+    text-align: right;
+    -webkit-transition: 0.5s;
+    -moz-transition:    0.5s;
+    -ms-transition:     0.5s;
+    -o-transition:      0.5s;
+    transition:         0.5s;
+}
+
+#aim p {
+    text-align: right;
+    padding: 0;
+    margin: 0;
+    font-size: 75px;
+}
+
+#aim.present h1 {
+    -webkit-transform: translate(-350px,0px);
+    -moz-transform:    translate(-350px,0px);
+    -ms-transform:     translate(-350px,0px);
+    -o-transform:      translate(-350px,0px);
+    transform:         translate(-350px,0px);    
+}
+
+/* Slide summary */
+.summary h1 {
+    font-weight: bold;
+    font-size: 50px;
+}
+
+.summary.future {
+    opacity: 0;
+}
+
+#summary h1 {
+    font-weight: bold;
+}
+
+/* Slide stats */
+#stats {
+    background-image:url('../img/growth_chart.png');
+    background-repeat: no-repeat;
+    background-position: bottom;
+    height: 500px;
+}
+
+#stats h1 {
+    font-size: 100px;    
+}
+
+.stats h1 a {
+   text-decoration: none;
+   color: black;
+}
+
+.stats h1 a:hover {
+    text-decoration: underline;
+}
+
+.stats img {
+    margin-top: 20px;
+    margin-left: 70px;
+}
+
+
+/* Slide installation */
+.installation {
+    text-align: center;
+}
+
+.installation h1 {
+    font-size: 60px;
+}
+
+.installation p {
+    margin-top: 20px;
+    font-size: 35px;
+}
+
+/* Slide projet */
+#project {
+    width: 850px;
+}
+
+#project h1 {
+
+    -webkit-transition: 0.5s;
+    -moz-transition:    0.5s;
+    -ms-transition:     0.5s;
+    -o-transition:      0.5s;
+    transition:         0.5s;
+}
+
+#project img {
+    float: right;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px; 
+}
+
+#project ul {
+    float: left;
+}
+
+
+/* Slide Activity et vue */
+#activity img {
+    margin-left: 70px;
+}
+
+#activity h1 {
+    font-weight: bold;
+}
+
+/* Slides backstack */
+
+#backstack2 {
+    opacity: 0;
+}
+
+#backstack2.present {
+    opacity: 1;
+}
+
+#impress-on-backstack3 #backstack2 {
+    opacity: 0;
+}
+
+/* Slide Lifecycle */
+#lifecycle {
+    text-align: center;
+}
+
+/* Slide state */
+#state h1 {
+    font-size: 60px;
+}
+
+/* Slide R Class */
+#rclass h1 {
+    font-size: 60px;
+}
+
+/* Slide UIThread */
+#uithread h1 {
+    font-size: 110px;
+    line-height: 0.7;
+    font-weight: bold;
+}
+
+/* Slide UIThread */
+#intents h1 {
+    font-size: 110px;
+    line-height: 0.7;
+    font-weight: bold;
+}
+
+.intents.future {
+    opacity: 0;
+}
+
+.intents.present {
+    opacity: 1;
+}
+
+/* Float */
+.float-left {
+    float: left;
+}

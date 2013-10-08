@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="Exercices de la formation Parlez-Vous Android ?">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Parlez-vous Android Avancé - Exercices</title>
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
+</head>
+<body>
+    <div class="masthead">
+        <div class="container lead">
+            <h1>Parlez-vous Android ?</h1>
+            <p>Cours avancé: Android par la pratique.</p>
+            <p class="excilys"><span>by</span> <a href="http://www.excilys.com/">Excilys</a></p> 
+        </div>
+    </div>
+    <div class="container">
+        <div class="row-fluid">
+            <section id="exercice1">
+                <h1>Exercice 1 - Les Fragments</h1>
+                <p>Le but de cet exercice est de comprendre comment travailler avec les fragments. Vous allez devoir créer une activité qui contient deux fragments, et les faire interagir: quand on clique sur un bouton du second fragment, le premier fragment doit changer d'image</p>
+		<div class="media">
+                    <img class="media-object pull-left" src="img/exo1.1.png" width="220px" />
+                    <img class="pull-left" src="img/exo1.2.png" width="330px" />
+                    <div class="media-body">
+                        <p>Indications:</p>
+                        <ul>
+
+	                    <li><strong>ImageViewerFragment</strong> contiendra une image</li>
+ 			    <li><strong>NavigationFragment</strong> contiendra un bouton qui permettra de changer l'image lorsqu'on clique dessus</li>
+                            <li>Utiliser la méthode <strong>setOnClickListener()</strong> sur le bouton</li>
+                            <li>Vous pouvez utiliser un <strong>ViewSwitcher</strong> pour passer d'un élément A à un élément B</li>
+                        </ul>
+                        <p>Une bonne façon de commencer est de d'abord mettre en place vos layouts avec les fragments et vérifier qu'ils s'affichent bien. Par la suite, c'est une bonne pratique de déclarer une interface dans le fragment, et de l'implémenter dans l'activité pour qu'elle effectue les actions que vous voulez. (cf cours)</p>
+                    </div>
+                </div>
+            </section>
+            <section id="exercice2">
+                <h1>Exercice 2 - Téléphonie</h1>
+                <p>Le but de cette exercice est de comprendre comment utiliser les intents standards liés à la téléphonie dans Android.</p>
+                <div class="media">
+                    <img class="media-object pull-left" src="img/exo2.1.png" width="220px" />
+                    <div class="media-body">
+                        <p>Indications:</p>
+			<p>Pour cela, vous allez développer une application permettant de passer un appel en entrant le numéro dans un champ texte puis utiliser l'intent ACTION_CALL, ou l'intent ACTION_DIAL. Vous implémenterez ensuite un listeneur qui loggera les états de l'appel </p>
+                        <ul>
+                            <li>Documentation de l'intent <strong><a href="http://developer.android.com/reference/android/content/Intent.html#ACTION_DIAL" target="_BLANK">ACTION_DIAL</a></strong></li>
+                            <li>Documentation de l'intent <strong><a href="http://developer.android.com/reference/android/content/Intent.html#ACTION_CALL" target="_BLANK">ACTION_CALL</a></strong></li>
+                    </div>
+                </div>
+                </div>  
+
+                <script src="js/bootstrap.min.js"></script>
+                <script src="http://code.jquery.com/jquery-latest.js"></script>
+</body>
+</html>
