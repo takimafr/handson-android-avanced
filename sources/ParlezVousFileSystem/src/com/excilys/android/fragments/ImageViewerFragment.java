@@ -123,16 +123,8 @@ public class ImageViewerFragment extends Fragment {
 			if(!(Environment.MEDIA_MOUNTED.equals(storageState) || Environment.MEDIA_MOUNTED_READ_ONLY.equals(storageState)))
 				return new ArrayList<Bitmap>();
 
-			// On récupère le dossier /mnt/sdcard
-			File sdcardDirectory = Environment.getExternalStorageDirectory();
-
-			if (!sdcardDirectory.exists()) {
-				throw new RuntimeException("Aucune sdcard détectée");
-			}
-
-			File musicDirectory = new File(sdcardDirectory.getAbsolutePath()
-					+ "/Music");
-
+			// On récupère le dossier /mnt/sdcard/Music
+			File musicDirectory = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_MUSIC);
 			if (!musicDirectory.exists()) {
 				throw new RuntimeException("Aucun répertoire Music détecté");
 			}
