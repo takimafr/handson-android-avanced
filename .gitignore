@@ -1,18 +1,18 @@
-*/.settings
-*/.project
-*/.classpath
+.settings
+.project
+.classpath
 
-*/.DS_Store
+.DS_Store
 
-*/gen
-*/target
-*/bin
+gen
+target
+bin
 
-*/tmp
-*/eclipse
+tmp
+eclipse
 
-*/libs
+libs
 
-*/proguard*
+proguard*
 
 *~
