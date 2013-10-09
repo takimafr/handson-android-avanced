@@ -4,5 +4,6 @@
 * Téléphonie
 * Système de fichiers
 * Services
+* Multimédia
 * Animations
 * Géolocalisation
