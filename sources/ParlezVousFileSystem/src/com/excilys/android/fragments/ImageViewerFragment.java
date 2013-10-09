@@ -119,6 +119,10 @@ public class ImageViewerFragment extends Fragment {
 		
 		private List<Bitmap> loadAlbumCoversFromSDCard() {
 
+			String storageState = Environment.getExternalStorageState();
+			if(!(Environment.MEDIA_MOUNTED.equals(storageState) || Environment.MEDIA_MOUNTED_READ_ONLY.equals(storageState)))
+				return new ArrayList<Bitmap>();
+
 			// On récupère le dossier /mnt/sdcard
 			File sdcardDirectory = Environment.getExternalStorageDirectory();
 
