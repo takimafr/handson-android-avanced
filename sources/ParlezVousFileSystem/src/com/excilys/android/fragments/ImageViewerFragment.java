@@ -7,6 +7,7 @@ import java.util.List;
 import android.app.Activity;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.v4.app.Fragment;
@@ -22,9 +23,13 @@ import com.excilys.android.R;
 
 public class ImageViewerFragment extends Fragment {
 
+	private static final String TAG = "ImageViewerFragment";
+	
 	private RelativeLayout mLayout;
 	private ViewFlipper viewFlipper;
 
+	private AsyncTask<Void, Void, List<Bitmap>> audioFileScannerTask;
+	
 	@Override
 	public void onAttach(Activity activity) {
 		super.onAttach(activity);
@@ -45,26 +50,24 @@ public class ImageViewerFragment extends Fragment {
 		return mLayout;
 	}
 	
-	@Override
-	public void onViewCreated(View view, Bundle savedInstanceState) {
-		super.onViewCreated(view, savedInstanceState);
-		
+	
+	private void toogleProgressBar(boolean show) {
+		if(show)
+			mLayout.findViewById(R.id.progress_bar).setVisibility(View.VISIBLE);
+		else
+			mLayout.findViewById(R.id.progress_bar).setVisibility(View.INVISIBLE);
+	}
+	
+	private void updateViewFlipper(List<Bitmap> albumCovers) {
 		ImageView albumView = null;
 
-		// On récupère les images du dossier Music (de façon récursive)
-		List<String> albumCovers= readAlbumCoversFromSDCard();
-
-		// On parcourt la liste précédente et on instancie les vues correspondantes, avant de les ajouter au viewFlipper
-		for(String cover : albumCovers) {
-			Log.i(getTag(), "Nouvelle pochette: " + cover);
+		for(Bitmap coverBitmap : albumCovers) {
 			albumView = new ImageView(getActivity());
 			
-			if(cover != null) {
-				Bitmap bitmap = BitmapFactory.decodeFile(cover);
-				albumView.setImageBitmap(bitmap);
+			if(coverBitmap != null) {
+				albumView.setImageBitmap(coverBitmap);
 				viewFlipper.addView(albumView);
-			}
-			
+			}			
 		}
 	}
 
@@ -72,6 +75,24 @@ public class ImageViewerFragment extends Fragment {
 	public void onStart() {
 		super.onStart();
 		showNext();
+	}
+	
+	@Override
+	public void onResume() {
+		super.onResume();
+		if(audioFileScannerTask == null) {
+			toogleProgressBar(true);
+			audioFileScannerTask = new AudioFileScannerTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+		}
+	}
+	
+	@Override
+	public void onPause() {
+		super.onPause();
+		if(audioFileScannerTask != null) {
+			audioFileScannerTask.cancel(true);
+			audioFileScannerTask = null;
+		}
 	}
 
 	public void showPrevious() {
@@ -82,55 +103,71 @@ public class ImageViewerFragment extends Fragment {
 		viewFlipper.showNext();
 	}
 
-	private List<String> readAlbumCoversFromSDCard() {
+	private class AudioFileScannerTask extends AsyncTask<Void, Void, List<Bitmap>> {
 
-		// On récupère le dossier /mnt/sdcard
-		File sdcardDirectory = Environment.getExternalStorageDirectory();
-
-		if (!sdcardDirectory.exists()) {
-			throw new RuntimeException("Aucune sdcard détectée");
+		@Override
+		protected List<Bitmap> doInBackground(Void... params) {
+			return loadAlbumCoversFromSDCard();
 		}
-
-		File musicDirectory = new File(sdcardDirectory.getAbsolutePath()
-				+ "/Music");
-
-		if (!musicDirectory.exists()) {
-			throw new RuntimeException("Aucun répertoire Music détecté");
+		
+		@Override
+		protected void onPostExecute(List<Bitmap> result) {
+			super.onPostExecute(result);
+			updateViewFlipper(result);
+			toogleProgressBar(false);
 		}
+		
+		private List<Bitmap> loadAlbumCoversFromSDCard() {
 
-		return readAlbumCovers(musicDirectory);
-	}
+			// On récupère le dossier /mnt/sdcard
+			File sdcardDirectory = Environment.getExternalStorageDirectory();
 
-	private List<String> readAlbumCovers(File parent) {
-
-		Log.i(getTag(), "Lecture des pochettes: " + parent.getAbsolutePath());
-		List<String> albumCovers = new ArrayList<String>();
-
-		try {
-			for (File file : parent.listFiles()) {
-				if (file.isDirectory())
-					albumCovers.addAll(readAlbumCovers(file));
-				else if (isImageFile(file.getName())) {
-					albumCovers.add(file.getAbsolutePath());
-				}
+			if (!sdcardDirectory.exists()) {
+				throw new RuntimeException("Aucune sdcard détectée");
 			}
-		} catch (Exception e) {
-			Log.e(getTag(), "Une exception s'est produite");
-		}
-		return albumCovers;
-	}
 
-	private boolean isImageFile(String fileName) {
-		int i = fileName.lastIndexOf('.');
-		if (i <= 0)
-			return false;
-		else {
-			String ext = fileName.substring(i + 1);
-			if ("png".equals(ext) || "jpg".equals(ext) || "bmp".equals(ext)
-					|| "gif".equals(ext))
-				return true;
-			return false;
+			File musicDirectory = new File(sdcardDirectory.getAbsolutePath()
+					+ "/Music");
+
+			if (!musicDirectory.exists()) {
+				throw new RuntimeException("Aucun répertoire Music détecté");
+			}
+
+			return readAlbumCovers(musicDirectory);
+		}
+
+		private List<Bitmap> readAlbumCovers(File parent) {
+
+			Log.i(TAG, "Lecture des pochettes: " + parent.getAbsolutePath());
+			List<Bitmap> albumCovers = new ArrayList<Bitmap>();
+
+			try {
+				for (File file : parent.listFiles()) {
+					if (file.isDirectory())
+						albumCovers.addAll(readAlbumCovers(file));
+					else if (isImageFile(file.getName())) {
+						Log.i(TAG, "Nouvelle pochette: " + file.getName());
+						albumCovers.add(BitmapFactory.decodeFile(file.getAbsolutePath()));
+					}
+				}
+			} catch (Exception e) {
+				Log.e(TAG, "Une exception s'est produite");
+			}
+			return albumCovers;
+		}
+
+		private boolean isImageFile(String fileName) {
+			int i = fileName.lastIndexOf('.');
+			if (i <= 0)
+				return false;
+			else {
+				String ext = fileName.substring(i + 1);
+				if ("png".equals(ext) || "jpg".equals(ext) || "bmp".equals(ext)
+						|| "gif".equals(ext))
+					return true;
+				return false;
+			}
 		}
 	}
-
+	
 }

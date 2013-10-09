@@ -2,8 +2,8 @@ package com.excilys.android;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.util.Log;
 import android.view.Menu;
-import android.widget.Toast;
 
 import com.excilys.android.fragments.ImageViewerFragment;
 import com.excilys.android.fragments.NavigationFragment.NavigationButton;
@@ -35,7 +35,7 @@ public class MainActivity extends FragmentActivity implements OnNavigationButton
 		ImageViewerFragment imageViewerFragment = (ImageViewerFragment) getSupportFragmentManager().findFragmentById(R.id.image_viewer_fragment);
 
 		if (imageViewerFragment != null) {
-			Toast.makeText(this, "Two Pane view: Clic sur le bouton " + button,Toast.LENGTH_SHORT).show();
+			Log.i(MainActivity.class.getName(),"Clic sur le bouton " + button);
 			
 			//Traitements à faire ici
 			switch(button) {
@@ -48,7 +48,6 @@ public class MainActivity extends FragmentActivity implements OnNavigationButton
 			case PLAY:
 				break;
 			}
-
 		}		
 	}
 
