@@ -114,24 +114,24 @@
 			<li>Comment effectuer des opérations à différentes étapes de l'appel</li>
 		</ul>
 	</div>
-	<div class="step slide" data-x="8000" data-y="8400" data-z="1000" data-rotate-y="90">
+	<div class="step slide" data-x="9000" data-y="8400" data-z="1000" data-rotate-y="90">
 		<h1>Permission CALL_PHONE</h1>		
 		<h2>Déclaration de la permission dans le Manifest:</h2>
 		<script src="https://gist.github.com/loicortola/38a4a7650a79d02f8f48.js"></script>
 	</div>
-	<div class="step slide" data-x="8000" data-y="8400" data-z="0" data-rotate-y="90">
+	<div class="step slide" data-x="9000" data-y="8400" data-z="0" data-rotate-y="90">
 		<h1>Passer un appel</h1>		
 		<h2>Directement avec l'intent ACTION_CALL</h2>
 		<img class="float-left" src="img/intent_call.png" width="150px">
 		<script src="https://gist.github.com/loicortola/810fb6725323cdf23046.js"></script>
 	</div>
-	<div class="step slide" data-x="8000" data-y="9000" data-z="0" data-rotate-y="90">
+	<div class="step slide" data-x="9000" data-y="9000" data-z="0" data-rotate-y="90">
 		<h1>Passer un appel</h1>		
 		<h2>En affichant le pavé numérique </h2>
 		<img class="float-left" src="img/intent_dial.png" width="150px">
 		<script src="https://gist.github.com/loicortola/19704e09d1b5f325e9b6.js"></script>
 	</div>
-	<div class="step slide" data-x="8000" data-y="9400" data-z="1000" data-rotate-y="90">
+	<div class="step slide" data-x="9000" data-y="9400" data-z="1000" data-rotate-y="90">
 		<h1>PhoneStateListener</h1>
 		<h2>
 			<p>Créer une classe qui étend de PhoneStateListener</p>
@@ -139,12 +139,62 @@
 		</h2>
 		<script src="https://gist.github.com/loicortola/26e1b9bf397972be4df2.js"></script>
 	</div>
-	<div class="step slide" data-x="8000" data-y="9600" data-z="0" data-rotate-y="90">
+	<div class="step slide" data-x="9000" data-y="9600" data-z="0" data-rotate-y="90">
 		<h1>PhoneStateListener</h1>
 		<h2>Déclaration du listener dans le code</h2>
 		<script src="https://gist.github.com/loicortola/49fe55f1a886126db400.js"></script>
 		<h2> Ajouter la permission READ_PHONE_STATE au Manifest</h2>
 		<script src="https://gist.github.com/loicortola/0b02d27fab7d26206d08.js"></script>
+	</div>
+	<div class="step slide title2" data-x="7500" data-y="9600" data-z="-1000" data-rotate-y="180">
+		<h1>File System</h1>
+		<img src="img/android_file_system.png">
+	</div>
+	<div class="step slide" data-x="6800" data-y="9600" data-z="-1000" data-rotate-y="180">
+		<ul>
+			<li>Comprendre les différents types de stockage (internal/external)</li>
+			<li>Savoir effectuer des opérations de lecture/écriture</li>
+		</ul>
+	</div>
+	<div class="step slide" data-x="5800" data-y="8000" data-z="0" data-rotate-y="180">
+		<h1>Internal Storage</h1>		
+		<ul>
+			<li>Emplacement dédié à l'application, et privé par défaut</li>
+			<li>Supprimé à la désinstallation de l'application</li>
+		</ul>
+	</div>
+	<div class="step slide" data-x="4400" data-y="8000" data-z="0" data-rotate-y="180">
+		<h1>Modes d'écriture</h1>		
+		<ul>
+			<li>MODE_PRIVATE: crée ou ecrase un fichier, celui-ci étant privé</li>
+			<li>MODE_APPEND: ajoute du contenu à un fichier existant. Ses propriétés d'accès ne changent pas</li>
+			<li>MODE_WORLD_READABLE: crée ou écrase un fichier, celui-ci étant public (accessible en lecture uniquement)</li>
+			<li>MODE_WORLD_WRITABLE: idem, mais accessible en lecture ET en écriture</li>
+		</ul>
+	</div>
+	<div class="step slide" data-x="5800" data-y="8800" data-z="0" data-rotate-y="180">
+		<p>Ecriture dans un fichier</p>
+		<script src="https://gist.github.com/loicortola/6f492758f5af16f7bfa2.js"></script>
+		<p>Lecture d'un fichier</p>
+		<script src="https://gist.github.com/loicortola/3a9596a785f1b3163050.js"></script>
+	</div>
+	<div class="step slide" data-x="4400" data-y="8800" data-z="-1000" data-rotate-y="180">
+		<h1>External Storage</h1>		
+		<ul>
+			<li>Stockage public et amovible physiquement ou logiquement (montable/démontable)</li>
+			<li>Peut ne pas être présent! (ex: carte SD enlevée)</li>
+			<li>Fichiers modifiables par l'utilisateur lors de la connexion à un ordinateur</li>
+		</ul>
+	</div>
+	<div class="step slide" data-x="5800" data-y="9600" data-z="0" data-rotate-y="180">
+		<h1>Bonne pratique:</h1>		
+		<p>Vérifier que le média est disponible: </p>
+		<script src="https://gist.github.com/loicortola/6f8f78e35449e0222a58.js"></script>
+		</ul>
+	</div>
+	<div class="step slide" data-x="4400" data-y="9600" data-z="0" data-rotate-y="180">
+		<h1>Récupérer l'External Storage</h1>		
+		<script src="https://gist.github.com/loicortola/56833d68a71536ef4f09.js"></script>
 	</div>
 	</div>
 <script src="http://bartaz.github.com/impress.js/js/impress.js"></script>

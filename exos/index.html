@@ -50,7 +50,34 @@
                             <li>Documentation de l'intent <strong><a href="http://developer.android.com/reference/android/content/Intent.html#ACTION_CALL" target="_BLANK">ACTION_CALL</a></strong></li>
                     </div>
                 </div>
-                </div>  
+	    </section>
+            <section id="exercice3">
+                <h1>Exercice 3 - File System</h1>
+                <p>Le but de cette exercice est de prendre en main le fonctionnement du système de fichiers d'android.</p>
+                <div class="media">
+                    <img class="media-object" src="img/exo3.1.png" />
+                    <div class="media-body">
+                        <p>Indications:</p>
+                        <ul>
+                            <li>Dans un premier temps, montez l'image sdcard.img dans votre Virtual Device (me demander le fichier)</li>
+                            <li>Partie 1: Créer une méthode permettant de lire récursivement le contenu du répertoire Music, et afficher dans la console</li>
+			    <li>Partie 2: Créer une méthode renvoyant une List&lt;String&gt; contenant les chemins absolus des <strong>images</strong> du répertoire Music (et sous répertoires)</li>
+			</ul>
+			<h2>Bonus:</h2>
+                    	<p>Vous allez reprendre l'exercice 1 en ajoutant les images de façon dynamique (c'est à dire que vous allez lire les images du répertoire Music de la carte sd de votre appareil, et toutes les ajouter à votre fragment)</p>
+                        <p>Indications:</p>
+			<ul>
+      			    <li>Changer le ViewSwitcher avec un ViewFlipper (qui peut gérer plus de deux images)</li>
+      			    <li>Modifier la méthode créée en Exo3 Partie 2 et renvoyer une List&lt;Bitmap&gt; qui vous servira à instancier les vues</li>
+			    <li>Peupler cette liste à l'aide d'une AsyncTask</li>
+			    <li>Utiliser la méthode <strong>file.getAbsolutePath()</strong> pour instancier vos bitmaps</li>
+			    <li>Utiliser la méthode <strong>setImageBitmap()</strong> pour insérer la bitmap dans la vue imageView</li>
+			</ul>
+			    
+                    </div>
+                </div>
+	    </section>
+        </div>  
 
                 <script src="js/bootstrap.min.js"></script>
                 <script src="http://code.jquery.com/jquery-latest.js"></script>
