@@ -1,0 +1,568 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Parlez-vous Android ? Game Development</title>
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="css/reveal.min.css">
+		<link rel="stylesheet" href="css/theme/custom.css" id="theme">
+		<link href='http://fonts.googleapis.com/css?family=Roboto:100' rel='stylesheet' type='text/css'>
+		<link rel="stylesheet" href="css/font-awesome.min.css">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+		<script>
+			document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+
+				<section>
+					<h1>Parlez-vous Android ?</h1>
+					<h3><i class="icon-android"></i> Formation avancée</h3>
+					<p>
+						<small>By <a href="http://excilys.com/" target="_blank">Excilys</a></small>
+					</p>
+					<aside class="notes">
+
+					</aside>
+				</section>
+
+				<section>
+					<section>
+						<h1>Alexandre THOMAS</h1>
+						<p><a href="https://twitter.com/aleksthomas" target="_blank">@AleksThomas</a></p>
+						<p><a href="mailto:althomas@excilys.com" target="_blank">althomas@excilys.com</a>
+					</section>
+					<section>
+						<p>Développeur Android et JEE chez Excilys.</p>
+						<p>Formateur Android.</p>
+					</section>
+					<section>
+						<img src="http://androidkickstartr.com/img/header.png">
+						<a href="http://androidkickstartr.com">http://androidkickstartr.com</a>
+					</section>
+					<section>
+						<h1>AndroidAnnotations</h1>
+						<a href="http://androidannotations.org/">http://androidannotations.org/</a>
+					</section>
+					<section>
+						<h1>Talks</h1>
+						<ul>
+							<li>2012: Devoxx France, Devoxx Anvers, PAUG, Open World Forum.</li>
+							<li>2013: DevConfRussia, DroidCon Paris.</li>
+						</ul>
+					</section>
+				</section>
+
+				<section>
+					<h1>Sommaire</h1>
+					<ol>
+						<li class="fragment">Introduction</li>
+						<li class="fragment">Les Fragments</li>
+						<li class="fragment">La téléphonie</li>
+						<li class="fragment">Système de fichiers</li>
+						<li class="fragment">Multimédia</li>
+						<li class="fragment">Services</li>
+						<li class="fragment">Les animations</li>
+						<li class="fragment">Géolocalisation</li>
+					</ol>
+				</section>	
+
+				<section>
+					<section>
+						<h1>Introduction</h1>
+					</section>
+					<section>
+						<img src="http://i.imgur.com/MGWYOMy.jpg?1">
+						<p>Publiée par NBC News.</p>
+						<aside class="notes">
+							Publié par NBC News. L'une de 2005 lors des funérailles de Jean-Paul II, l'autre de 2013, pendant la présentation du nouveau pape François.
+						</aside>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h1><i class="icon-android"></i> Introduction</h1>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h1><i class="icon-th-large"></i> Les Fragments</h1>
+					</section>
+					<section>
+						<img src="img/fragment_use.png"/>	
+						<p>Disponible depuis Honeycomb (3.0).</p>
+						<aside class="notes">
+							Les fragments sont apparus dans la version Honeycomb (3.0) d'Android pour faciliter l'organisation des vues sur tablette (écran plus grand).
+							Un fragment est une portion réutilisable d'un écran. Ils disposent de leur propre layout, leur cycle de vie et rattacher à celui de l'activité.
+						</aside>
+					</section>
+					<section>
+						<h2>Déclarer un fragment</h2>
+						<pre><code data-trim contenteditable>
+public class ArticleFragment extends Fragment {
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+        Bundle savedInstanceState) {
+
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.article_view, container, false);
+    }
+}
+						</code></pre>
+						<aside class="notes">
+
+						</aside>
+					</section>
+					<section>
+						<h1>Ajouter un fragment</h1>	
+					</section>
+					<section>
+						<h2>Première solution</h2>
+						<h3><em><i class="icon-code"></i> XML</em></h3>
+						<pre><code data-trim contenteditable>
+&lt;LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"&gt;
+ 
+    &lt;fragment android:name="com.excilys.android.MainFragment"
+              android:id="@+id/main_fragment"
+              android:layout_weight="3"
+              android:layout_width="match_parent"
+              android:layout_height="0dp" /&gt;
+ 
+    &lt;fragment android:name="com.excilys.android.NavBarFragment"
+              android:id="@+id/navigation_fragment"
+              android:layout_weight="1"
+              android:layout_width="match_parent"
+              android:layout_height="0dp" /&gt;
+&lt;/LinearLayout&gt;
+						</code></pre>
+						<aside class="notes">
+					</section>
+					<section>
+						<h2>Deuxième solution</h2>
+						<h3><em><i class="icon-code"></i> XML</em></h3>
+						<pre><code data-trim contenteditable>
+&lt;LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent"&gt;
+
+	&lt;FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+		android:id="@+id/fragment_container"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent" /&gt;
+
+&lt;/LinearLayout&gt;
+						</code></pre>
+						<h3><em><i class="icon-code"></i> Java</em></h3>
+						<pre><code data-trim contenteditable>// Créer une instance de votre fragment
+NavBarFragment navBarFragment = new NavBarFragment();
+
+// Démarrer une transaction
+FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+
+// Ajouter le fragment dans le conteneur 'fragment_container'
+transaction.add(R.id.fragment_container, navBarFragment);
+
+// Valider la transaction
+transaction.commit();
+						</code></pre>
+						<aside class="notes">
+						</aside>
+					</section>
+					<section>
+						<h2>Remplacer un fragment</h2>
+						<pre><code data-trim contenteditable>// Créer une instance de votre fragment
+NavBarFragment newNavBarFragment = new NavBarFragment();
+
+// Démarrer une transaction
+FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+ 
+// Remplacer le fragment contenu dans R.id.fragment_container
+transaction.replace(R.id.fragment_container, newNavBarFragment);
+
+// Valider la transaction
+transaction.commit();
+						</code></pre>
+					</section>
+					<section>
+						<h1>Communication Fragment/Activity</h1>
+					</section>
+					<section>
+						<h2>Fragment <i class="icon-long-arrow-right"></i> Activity</h2>
+						<br/>
+						<p>Déclarer une interface</p>
+						<pre><code data-trim contenteditable>
+public interface OnNavButtonClickListener {
+    public void onNavButtonClick(Button button);
+}
+						</code></pre>
+						<p>Verifier que l'Activity associée implémente cette interface</p>
+						<pre><code data-trim contenteditable>
+private OnNavButtonClickListener mCallback;
+
+@Override
+public void onAttach(Activity activity) {
+    super.onAttach(activity);
+    try {
+        mCallback = (OnNavButtonClickListener) activity;
+    } catch (ClassCastException e) {
+        throw new ClassCastException(activity.toString()
+                + " must implement OnNavButtonClickListener");
+    }
+}
+						</code></pre>
+					</section>
+					<section>
+						<h2>Activity <i class="icon-long-arrow-right"></i> Fragment</h2>
+						<pre><code data-trim>// Callback
+public void onNavButtonClick(Button button) {
+  MainFragment fragment = (MainFragment) getFragmentManager().findFragmentById(R.id.main_fragment);
+
+  if (mainFragment != null) {
+    switch(button) {
+      case Button.PLAY:
+        mainFragment.playVideo();
+        break;
+      case Button.PAUSE:
+        mainFragment.pauseVideo();
+      default:
+        break;
+    }
+  }
+
+}
+						</code></pre>
+					</section>
+					<section>
+						<h1><i class="icon-android"></i> Exercice</h1>
+					</section>
+					<section>
+						<h2>TODO</h2>
+						<ol>
+							<li>TODO</li>
+							<li>TODO</li>
+							<li>TODO</li>
+							<li>TODO</li>
+						</ol>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h1><i class="icon-phone"></i> Téléphonie</h1>
+						<aside class="notes">
+							Comment passer des appels
+							Comment effectuer des opérations à différentes étapes de l'appel
+						</aside>
+					</section>
+					<section>
+						<img src="img/android_call.png">
+					</section>
+					<section>
+						<h2>Permission</h2>
+						<br/>
+						<p>Ajouter la ligne suivante dans votre AndroidManifest :</p>
+						<pre><code data-trim contenteditable>
+&lt;uses-permission android:name="android.permission.CALL_PHONE"/&gt;
+						</code></pre>
+						<p>Permet l'accès aux fonctions de téléphonie.</p>
+					</section>
+					<section>
+						<h1>Passer un appel</h1>
+						<br/>
+						<p>En affichant le pavé numérique</p>
+						<img src="img/intent_dial.png" height="280px">
+						<pre><code data-trim contenteditable>
+// Le numéro à appeler: la syntaxe de l'Uri est tel:LENUMERODETEL
+Uri uri = Uri.parse("tel:+33102030405");		
+		
+// Lancement de l'activité qui va déclencher l'affichage du dialer
+Intent intent = new Intent(Intent.ACTION_DIAL,uri);
+startActivity(intent);
+						</code></pre>
+						<aside class="notes">
+						</aside>
+					</section>
+					<section>
+						<h3>PhoneStateListener</h3>
+						<h3><em><i class="icon-code"></i> Java</em></h3>
+						<pre><code data-trim contenteditable>
+public class MyListener extends PhoneStateListener {
+ 
+    @Override
+    public void onCallStateChanged(int state, String number ) {
+    	switch(state) {
+	    	case TelephonyManager.CALL_STATE_RINGING:
+	            // Le numéro est en train de sonner.
+	    		break;
+	    	case TelephonyManager.CALL_STATE_IDLE:
+	    		// En standby. Rien ne se passe.
+	    		break;
+	    	case TelephonyManager.CALL_STATE_OFFHOOK:
+	    		// Soit un appel est en communication, en train d'être composé, ou mis en attente.
+	    		break;
+    	}
+    }
+}
+						</code></pre>
+					</section>
+					<section>
+						<h3>PhoneStateListener (suite)</h3>
+						<h3><em><i class="icon-code"></i> Java</em></h3>
+						<pre><code data-trim contenteditable>
+//Récupération du TelephonyManager
+TelephonyManager manager = (TelephonyManager)
+                  this.getSystemService(MainActivity.TELEPHONY_SERVICE);
+ 
+//Déclaration du listener
+manager.listen(new MyListener(), PhoneStateListener.LISTEN_CALL_STATE);
+						</code></pre>
+						<br>
+						<pre><code data-trim contenteditable>
+&lt;uses-permission android:name="android.permission.READ_PHONE_STATE"/&gt;
+						</code></pre>
+						<p>Permission pour pouvoir écouter les états du service de téléphonie</p>
+					</section>
+					<section>
+						<h1><i class="icon-android"></i> Exercice</h1>
+					</section>
+					<section>
+						<h2>TODO</h2>
+						<ol>
+							<li>TODO</li>
+							<li>TODO</li>
+							<li>TODO</li>
+							<li>TODO</li>
+						</ol>
+					</section>
+				</section>	
+
+				<section>
+					<section>
+						<h1><i class="icon-file"></i> Système de fichiers</h1>
+						<aside class="notes">
+							Comprendre les différents types de stockage (internal/external)
+							Savoir effectuer des opérations de lecture/écriture
+						</aside>
+					</section>
+					<section>
+						<h1>Type de stockage</h1>
+						<br>
+						<br>
+						<div style="text-align:left;">
+							<h2><i class="icon-check-sign"></i> Internal storage</h2>
+							<h2><i class="icon-check-sign"></i> External storage</h2>
+						</div>
+						<aside class="notes">
+							Internal: Emplacement dédié à l'application, et privé par défaut. Supprimé à la désinstallation de l'application
+
+							External: Stockage public et amovible physiquement ou logiquement (montable/démontable. Peut ne pas être présent! (ex: carte SD enlevée)
+									  Fichiers modifiables par l'utilisateur lors de la connexion à un ordinateur
+						</aside>
+					</section>
+					<section>
+						<h2><i class="icon-file"></i> Internal storage</h2>
+						<h3>Modes d'écriture</h3>
+						<br>
+						<ul>
+							<li>MODE_PRIVATE,</li>
+							<li>MODE_APPEND,</li>
+							<li>MODE_WORLD_READABLE et MODE_WORLD_WRITABLE</li>
+						</ul>
+						<aside class="notes">
+MODE_PRIVATE: crée ou ecrase un fichier, celui-ci étant privé
+MODE_APPEND: ajoute du contenu à un fichier existant. Ses propriétés d'accès ne changent pas
+MODE_WORLD_READABLE: crée ou écrase un fichier, celui-ci étant public (accessible en lecture uniquement)
+MODE_WORLD_WRITABLE: idem, mais accessible en lecture ET en écriture
+						</aside>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h1><i class="icon-music"></i> Multimédia</h1>
+					</section>
+					<section>
+						<h2>Types de STREAM</h2>
+						<br/>
+						<ul>
+							<li>STREAM_TYPE = flux</li>
+							<li>VOICE_CALL, MUSIC, NOTIFICATIONS...</li>
+							<br/>
+							<li>Contrôle du volume: <pre><code data-trim contenteditable>Activity.setVolumeControlStream (int streamType)</pre></code></li>
+						</ul>
+						<aside class="notes">
+							Flux sur lequel une application peut diffuser du son. Différencier les différents type de son: Sonnerie ? Voix ? Musique ? Notifications etc...
+						</aside>
+					</section>
+					<section>
+						<h2>Jouer de la musique</h2>
+						<p>On va utiliser le MediaPlayer.</p>
+						<pre><code data-trim contenteditable>
+try {
+    // on set le fichier audio
+    mediaPlayer.setDataSource(...);
+
+    // on prépare l'audio
+    mediaPlayer.prepare();
+
+    // on commence à jouer l'audio
+    mediaPlayer.start();
+    mediaPlayer.pause();
+    mediaPlayer.stop();
+
+} catch (IOException e) {
+    Log.e(TAG, "Problem during audio loading", e);
+}
+						</code></pre>
+					</section>
+					<section>
+						<img src="http://developer.android.com/images/mediaplayer_state_diagram.gif"/>
+						<br/>
+						<a href="http://developer.android.com/reference/android/media/MediaPlayer.html">Documentation</a>
+					</section>					
+					<section>	
+						<h2><i class="icon-warning-sign"></i> Audio Focus <i class="icon-warning-sign"></i></h2>
+						<p>Être un bon citoyen Android</p>
+						<pre style="font-size:16px;"><code data-trim contenteditable>
+AudioManager am = ...;
+
+// On demande le focus de l'audio
+am.requestAudioFocus(AudioManager.OnAudioFocusChangeListener l, int streamType, ...);
+
+// On restitue le focus de l'audio
+am.abandonAudioFocus(AudioManager.OnAudioFocusChangeListener l);
+						</code></pre>
+						<aside class="notes">
+							Partie important de la gestion du son sous Android. Malheureusement, pas toujours respectée.
+							Permet de prévenir le système, et surtout, les autres applications que notre appli va jouer un son permettant à ces dernières de réagir en fonction.
+						</aside>
+					</section>
+					<section>
+						<h2><i class="icon-code"></i> Code</h2>
+						<pre style="font-size:16px;"><code data-trim contenteditable>
+
+// AudioManager.OnAudioFocusChangeListener
+@Override
+public void onAudioFocusChange(int focusChange) {
+    if (focusChange == AudioManager.AUDIOFOCUS_GAIN) {
+        // Récupération du son suite à une perte
+        // on continue de jouer si on revient d'une pause
+        // ou on rejoue le son depuis le début si c'était un stop
+        // ou encore on restitue le niveau de volume
+        // tout dépend du type de AUDIOFOCUS_LOSS
+    } else if (focusChange == AudioManager.AUDIOFOCUS_LOSS) {
+        // perte de l'audio focus pour une longue durée
+        // mettre en stop
+    } else if (focusChange == AudioManager.AUDIOFOCUS_LOSS_TRANSIENT) {
+        // perte de l'audio focus pour une petite durée
+        // mettre en pause
+    } else if (focusChange == AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK) {
+        // perte de l'audio focus pour une petite durée et 
+        // possibilité de jouer un son en même temps
+        // Baisser le volume
+    }
+}
+						</code></pre>
+					</section>
+				</section>	
+
+				<section>
+					<section>
+						<h2>Libérer un bitmap</h2>
+						<p>Versions inférieures à Honeycomb 3.0 (Api 11)</p>
+						<p>Quand un Bitmap est inutilisé -> Bitmap.recycle()</p>
+						<p><i class="icon-warning-sign"></i> Native heap vs Dalvik's heap.</p>
+						<aside class="notes">
+							Sur les versions inférieures à la 3.0, les bitmaps étaient géré sur une heap différente de celle de Dalvik: Native heap.
+							Ainsi, passez l'objet à null permettait de garbage collecter l'objet sur la heap Dalvik mais pas la Native. L'appel à la méthode
+							Bitmap.recycle() était nécessaire pour libérer réellement la mémoire.
+						</aside>
+					</section>
+					<section>
+						<h2>Recycler un bitmap</h2>
+						<p>Depuis Honeycomb: on peut recycler un bitmap.</p>
+						<pre style="font-size:16px;"><code data-trim contenteditable>
+BitmapFactory.Options options = new BitmapFactory.Options();
+options.inBitmap = recycledBitmap;
+// ...
+BitmapFactory.decodeFile("my_file_path", options);
+// ou
+BitmapFactory.decodeFileDescriptor(fileDescriptor, null, options);
+// ...
+						</code></pre>
+						<aside class="notes">
+							Depuis Honeycomb, les bitmaps sont gérés sur la heap Dalvik au même titre que les autres objets de l'application. 
+							De plus, il est possible de recycler/réutiliser un bitmap. Par contre, il faut que le bitmap à charger est exactement les dimensions que celui 
+							que l'on veut recyclé. 
+						</aside>
+					</section>
+				</section>
+				<section>
+					<h1>THE END</h1>
+					<h3>Merci pour votre attention</h3>
+				</section>
+
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.min.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+					// { src: 'plugin/search/search.js', async: true, condition: function() { return !!document.body.classList; } }
+					// { src: 'plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
