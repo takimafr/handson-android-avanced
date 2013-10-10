@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">ParlezVousAnimation</string>
+    <string name="animationNew">New Animation System</string>
+    <string name="animationOld">Old Animation System</string>
+    <string name="button">My Button</string>
+
+</resources>
