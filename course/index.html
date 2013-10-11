@@ -626,13 +626,13 @@ public void onAudioFocusChange(int focusChange) {
 						<h3><em><i class="icon-code"></i> Java</em></h3>
 						<pre style="font-size:16px;"><code data-trim contenteditable>
 public class MyBoundService extends Service {
-    private final IBinder mBinder = new LocalBinder();
+    private final IBinder mBinder = new MyBinder();
 
     // Fait le lien entre l'activity et bound service
-    public class LocalBinder extends Binder {
-        LocalService getService() {
+    public class MyBinder extends Binder {
+        MyService getService() {
         	// On retourne notre service 
-            return LocalService.this;
+            return MyService.this;
         }
     }
 
@@ -648,18 +648,53 @@ public class MyBoundService extends Service {
 						</code></pre>
 						<a href="http://developer.android.com/guide/components/bound-services.html">Documentation</a>
 					</section>	
-						<section>
-							<h1>Multithreading</h1>
-						</section>
-						<section>
-							<h2>Handler</h2>
-							<ul>
-								<li>Associé à un thread</li>
-								<li>Permet de poster des tâches à executer</li>
-							</ul>
-							<br>
-							<br>
-						<pre><code data-trim contenteditable>
+					<section>
+						<h2>Bound Service</h2>
+						<p>Lancer et lier le service</p>
+						<pre style="font-size:16px;"><code data-trim contenteditable>
+public class BindingActivity extends Activity {
+
+	private MyService service;
+
+	 @Override
+	protected void onStart() {
+	    super.onStart();
+	    Intent intent = new Intent(this, MyService.class);
+	    bindService(intent, connection, Context.BIND_AUTO_CREATE);
+	}
+}
+						</code></pre>
+						<p>Connection au bound service</p>
+						<pre style="font-size:16px;"><code data-trim contenteditable>
+private ServiceConnection connection = new ServiceConnection() {
+
+        @Override
+        public void onServiceConnected(ComponentName className, IBinder service) {
+            MyBinder binder = (MyBinder) service;
+            service = binder.getService();
+            bound = true;
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName arg0) {
+            bound = false;
+        }
+
+};
+						</code></pre>
+					</section>
+					<section>
+						<h1>Multithreading</h1>
+					</section>
+					<section>
+						<h2>Handler</h2>
+						<ul>
+							<li>Associé à un thread</li>
+							<li>Permet de poster des tâches à executer</li>
+						</ul>
+						<br>
+						<br>
+					<pre><code data-trim contenteditable>
 // Créer un handler
 Handler handler = new Handler();
 
