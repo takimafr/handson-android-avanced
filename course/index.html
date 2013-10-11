@@ -49,9 +49,9 @@
 
 				<section>
 					<section>
-						<h1>Alexandre THOMAS</h1>
-						<p><a href="https://twitter.com/aleksthomas" target="_blank">@AleksThomas</a></p>
-						<p><a href="mailto:althomas@excilys.com" target="_blank">althomas@excilys.com</a>
+						<h1>Jeremie Martinez</h1>
+						<p><a href="https://twitter.com/jeremmartinez" target="_blank">@JeremMartinez</a></p>
+						<p><a href="mailto:jmartinez@excilys.com" target="_blank">jmartinez@excilys.com</a>
 					</section>
 					<section>
 						<p>Développeur Android et JEE chez Excilys.</p>
@@ -78,13 +78,13 @@
 					<h1>Sommaire</h1>
 					<ol>
 						<li class="fragment">Introduction</li>
-						<li class="fragment">Les Fragments</li>
+						<li class="fragment">Les fragments</li>
 						<li class="fragment">La téléphonie</li>
+						<li class="fragment">Les bitmaps</li>
 						<li class="fragment">Système de fichiers</li>
 						<li class="fragment">Multimédia</li>
 						<li class="fragment">Services</li>
 						<li class="fragment">Les animations</li>
-						<li class="fragment">Géolocalisation</li>
 					</ol>
 				</section>	
 
@@ -363,7 +363,48 @@ manager.listen(new MyListener(), PhoneStateListener.LISTEN_CALL_STATE);
 						</ol>
 					</section>
 				</section>	
-
+				<section>
+					<section>
+						<h1>Bitmap</h1>
+					</section>
+					<section>
+						<h2>Charger un bitmap</h2>
+						<pre style="font-size:16px;"><code data-trim contenteditable>
+BitmapFactory.Options options = new BitmapFactory.Options();
+BitmapFactory.decodeFile("my_file_path", options);
+						</code></pre>
+					</section>
+					<section>
+						<h2>Recycler un bitmap</h2>
+						<p>Depuis Honeycomb: on peut recycler un bitmap.</p>
+						<pre style="font-size:16px;"><code data-trim contenteditable>
+BitmapFactory.Options options = new BitmapFactory.Options();
+options.inBitmap = recycledBitmap;
+// ...
+BitmapFactory.decodeFile("my_file_path", options);
+// ou
+BitmapFactory.decodeFileDescriptor(fileDescriptor, null, options);
+// ...
+						</code></pre>
+						<aside class="notes">
+							Depuis Honeycomb, les bitmaps sont gérés sur la heap Dalvik au même titre que les autres objets de l'application. 
+							De plus, il est possible de recycler/réutiliser un bitmap. Par contre, il faut que le bitmap à charger est exactement les dimensions que celui 
+							que l'on veut recyclé. 
+						</aside>
+					</section>
+					<section>
+						<h2>Libérer un bitmap</h2>
+						<p>Versions inférieures à Honeycomb 3.0 (Api 11)</p>
+						<p>Quand un Bitmap est inutilisé -> Bitmap.recycle()</p>
+						<p><i class="icon-warning-sign"></i> Native heap vs Dalvik's heap.</p>
+						<aside class="notes">
+							Sur les versions inférieures à la 3.0, les bitmaps étaient géré sur une heap différente de celle de Dalvik: Native heap.
+							Ainsi, passez l'objet à null permettait de garbage collecter l'objet sur la heap Dalvik mais pas la Native. L'appel à la méthode
+							Bitmap.recycle() était nécessaire pour libérer réellement la mémoire.
+						</aside>
+					</section>
+					
+				</section>
 				<section>
 					<section>
 						<h1><i class="icon-file"></i> Système de fichiers</h1>
@@ -378,7 +419,9 @@ manager.listen(new MyListener(), PhoneStateListener.LISTEN_CALL_STATE);
 						<br>
 						<div style="text-align:left;">
 							<h2><i class="icon-check-sign"></i> Internal storage</h2>
+							<p>Emplacement dédié à l'application, et privé par défaut. Supprimé à la désinstallation de l'application</p>
 							<h2><i class="icon-check-sign"></i> External storage</h2>
+							<p>Stockage public et amovible physiquement ou logiquement</p>
 						</div>
 						<aside class="notes">
 							Internal: Emplacement dédié à l'application, et privé par défaut. Supprimé à la désinstallation de l'application
@@ -396,12 +439,42 @@ manager.listen(new MyListener(), PhoneStateListener.LISTEN_CALL_STATE);
 							<li>MODE_APPEND,</li>
 							<li>MODE_WORLD_READABLE et MODE_WORLD_WRITABLE</li>
 						</ul>
-						<aside class="notes">
-MODE_PRIVATE: crée ou ecrase un fichier, celui-ci étant privé
-MODE_APPEND: ajoute du contenu à un fichier existant. Ses propriétés d'accès ne changent pas
-MODE_WORLD_READABLE: crée ou écrase un fichier, celui-ci étant public (accessible en lecture uniquement)
-MODE_WORLD_WRITABLE: idem, mais accessible en lecture ET en écriture
-						</aside>
+					</section>
+					<section>
+						<h2><i class="icon-file"></i> External storage</h2>
+						<h3>Récupérer l'External storage</h2>
+							<pre style="font-size:16px;"><code data-trim contenteditable>
+//API 7 et inférieures:
+Environment.getExternalStorageDirectory()
+File sdcardDirectory = Environment.getExternalStorageDirectory();
+File musicDirectory = new File(sdcardDirectory.getAbsolutePath()+ "/Music");
+
+//API 8 et supérieures:
+File musicDirectory = Environment.getExternalStoragePublicDirectory(	                               Environment.DIRECTORY_MUSIC);
+							</code></pre>
+					</section>
+					<section>
+						<h2><i class="icon-file"></i> External storage</h2>
+						<h3>Bonne pratique: Vérifier que le média est disponible</h3>
+							<pre style="font-size:16px;"><code data-trim contenteditable>
+boolean externalStorageAvailable = false;
+boolean externalStorageWriteable = false;
+
+String state = Environment.getExternalStorageState();
+
+if (Environment.MEDIA_MOUNTED.equals(state)) {
+ 	// Le média est monté en lecture/écriture
+	externalStorageAvailable = true;
+	externalStorageWriteable = true;
+} else if (Environment.MEDIA_MOUNTED_READ_ONLY.equals(state)) {
+	// Le média est monté en lecture seule
+	externalStorageAvailable = true;
+	externalStorageWriteable = false;
+} else {
+	// Le média n'est pas présent!
+	externalStorageAvailable = externalStorageWriteable = false;
+}
+							</code></pre>
 					</section>
 				</section>
 				<section>
@@ -492,38 +565,34 @@ public void onAudioFocusChange(int focusChange) {
 						</code></pre>
 					</section>
 				</section>	
-
 				<section>
 					<section>
-						<h2>Libérer un bitmap</h2>
-						<p>Versions inférieures à Honeycomb 3.0 (Api 11)</p>
-						<p>Quand un Bitmap est inutilisé -> Bitmap.recycle()</p>
-						<p><i class="icon-warning-sign"></i> Native heap vs Dalvik's heap.</p>
-						<aside class="notes">
-							Sur les versions inférieures à la 3.0, les bitmaps étaient géré sur une heap différente de celle de Dalvik: Native heap.
-							Ainsi, passez l'objet à null permettait de garbage collecter l'objet sur la heap Dalvik mais pas la Native. L'appel à la méthode
-							Bitmap.recycle() était nécessaire pour libérer réellement la mémoire.
-						</aside>
+						<h1>Animations</h1>
+					</section>	
+					<section>
+						<h2>View Object Animator</h2>
+						<p>Nouveau système: API 11<p>
+						<pre style="font-size:16px;"><code data-trim contenteditable>
+Button button = (Button) findViewById(R.id.button);
+button.animate().rotation(360);
+						</code></pre>
 					</section>
 					<section>
-						<h2>Recycler un bitmap</h2>
-						<p>Depuis Honeycomb: on peut recycler un bitmap.</p>
+						<h2>Animation Utils</h1>
+						<p>Ancien système: API 1</p>
 						<pre style="font-size:16px;"><code data-trim contenteditable>
-BitmapFactory.Options options = new BitmapFactory.Options();
-options.inBitmap = recycledBitmap;
-// ...
-BitmapFactory.decodeFile("my_file_path", options);
-// ou
-BitmapFactory.decodeFileDescriptor(fileDescriptor, null, options);
-// ...
+&lt;rotate
+	android:fromDegrees="0"
+	android:pivotX="50%"
+	android:pivotY="50%"
+	android:toDegrees="360" /&gt;
 						</code></pre>
-						<aside class="notes">
-							Depuis Honeycomb, les bitmaps sont gérés sur la heap Dalvik au même titre que les autres objets de l'application. 
-							De plus, il est possible de recycler/réutiliser un bitmap. Par contre, il faut que le bitmap à charger est exactement les dimensions que celui 
-							que l'on veut recyclé. 
-						</aside>
+						<pre style="font-size:16px;"><code data-trim contenteditable>
+Button button = (Button) findViewById(R.id.button);
+button.startAnimation(AnimationUtils.loadAnimation(this, R.anim.animation));
+						</code></pre>
 					</section>
-				</section>
+				</section>			
 				<section>
 					<h1>THE END</h1>
 					<h3>Merci pour votre attention</h3>
