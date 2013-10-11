@@ -647,25 +647,7 @@ public class MyBoundService extends Service {
 }
 						</code></pre>
 						<a href="http://developer.android.com/guide/components/bound-services.html">Documentation</a>
-					</section>
-					<section>
-						<h2>Bound Service</h2>
-						<br>
-						<p>A chaque appel à startService: </p>
-						<pre style="font-size:16px;"><code data-trim contenteditable>
-void onHandleIntent(Intent intent)
-						</code></pre>
-						<br>
-						<p>Utilisation des méthodes putExtra et get*Extra pour passer des informations</p>
-							<pre style="font-size:16px;"><code data-trim contenteditable>
-// Envoyer des données
-Intent intent = new Intent(this, MusicService.class);  
-intent.putExtra("action", Action.PLAY.name());
-
-// Récupérer les données
-intent.getStringExtra("action");
-							</code></pre>
-						</section>	
+					</section>	
 						<section>
 							<h1>Multithreading</h1>
 						</section>
