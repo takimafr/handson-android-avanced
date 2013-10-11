@@ -31,7 +31,7 @@
 	                    <li><strong>ImageViewerFragment</strong> contiendra une image</li>
  			    <li><strong>NavigationFragment</strong> contiendra un bouton qui permettra de changer l'image lorsqu'on clique dessus</li>
                             <li>Utiliser la méthode <strong>setOnClickListener()</strong> sur le bouton</li>
-                            <li>Vous pouvez utiliser un <strong>ViewSwitcher</strong> pour passer d'un élément A à un élément B</li>
+                            <li>Vous pouvez utiliser un <strong>ViewSwitcher</strong> pour passer d'un élément A à un élément B. Vos deux éléments étant des ImageView.</li>
                         </ul>
                         <p>Une bonne façon de commencer est de d'abord mettre en place vos layouts avec les fragments et vérifier qu'ils s'affichent bien. Par la suite, c'est une bonne pratique de déclarer une interface dans le fragment, et de l'implémenter dans l'activité pour qu'elle effectue les actions que vous voulez. (cf cours)</p>
                     </div>
@@ -91,42 +91,30 @@
                     <div class="media-body">
                         <p>Indications:</p>
                         <ul>
-                            <li>Dans un premier temps, créez un objet AudioPlayer. Ce sera l'objet métier qui pilotera le média player</li>
-                            <li>Lors de la construction de l'audioPlayer, vous lui passerez une instance d'AudioManager (que vous créerez dans votre activité)</li>
-			    <li>Vous passerez la liste de fichiers audio à votre audioPlayer</li>
+                            <li>Dans un premier temps, créez un objet AudioPlayer. Ce sera l'objet métier qui pilotera le média player. Une bonne API pour cet objet est la suivante: </li>
+<script src="https://gist.github.com/jeremiemartinez/6936644.js"></script>
+			    <li>Vous allez devoir passer la liste de fichiers audio à votre audioPlayer</li>
 			    <li>N'oubliez pas de gérer l'AudioFocus (cf cours) pour ne pas perturber l'utilisation du téléphone</li>
-			    <li>Ajoutez un bouton Play/Pause dans votre NavigationFragment pour gérer le média player</li>
+			    <li>Ajoutez un bouton Play dans votre NavigationFragment pour gérer le média player</li>
+				<li>A chaque clic sur le bouton, une nouvelle musique est jouée.</li>
 			</ul>
                     </div>
                 </div>
 	    </section>
 	    <section id="exercice51">
-                <h1>Exercice 5.1 - Services</h1>
-                <p>Le but de cette exercice est de comprendre le fonctionnement du cycle de vie d'un service</p>
+                <h1>Exercice 5 - Services</h1>
+                <p>Le but de cette exercice est de comprendre le fonctionnement du cycle de vie d'un service et de remplacer l'AsyncTask utilisée pour loader les images/musiques.</p>
                 <div class="media">
                     <div class="media-body">
                         <p>Indications:</p>
                         <ul>
-                            <li>Créer un Service dans un nouveau projet </li>
-                            <li>Effectuez des opérations dessus et loggez les méthodes onCreate, onStart, onDestroy, onStartCommand, stopSelf, onBind,   </li>
-			</ul>
+                            <li>Créer un Service dans un nouveau projet (Cf cours)</li>
+                            <li>Etudiez son cycle de vie en loggant les évenements: onCreate, onStart, onDestroy, ...</li>
+							<li>Réutiliser les méthodes crées dans l'AsyncTask et implémenter le loading des images/musiques.</li>
+						</ul>
                     </div>
                 </div>
-                <section id="exercice52">
-                <h1>Exercice 5.2 - Services</h1>
-                <p>Le but de cette exercice est de mettre en place un service audio qui pourra fonctionner en tâche de fond, indépendemment de votre activité</p>
-                <div class="media">
-                    <div class="media-body">
-                        <p>Indications:</p>
-                        <ul>
-                            <li>Vous allez devoir déplacer votre objet AudioPlayer dans un Service</li>
-                            <li>Pour gérer la communication entre le Service et votre activité, vous déclarerez une énumeration Action dans votre service, et vous passerez une action en argument à chaque clic pour piloter votre service</li>
-			    <li>N'oubliez pas de réflechir au cycle de vie de votre application: Que se passe-t-il quand vous la quittez et que vous revenez dessus, alors que le service est encore en train de fonctionner?</li>
-			</ul>
-                    </div>
-                </div>
-
-	    </section>
+           </section>
 	    <section id="exercice6">
                 <h1>Exercice 6 - Animations</h1>
                 <p>Vous allez dynamiser votre interface en utilisant les animations</p>
@@ -136,12 +124,16 @@
                         <p>Indications:</p>
                         <ul>
                             <li>Créer un animation set dans un fichier xml contenant au moins une translation, une rotation, une alpha, et une scale.</li>
-                            <li>Utiliser des interpolator, des durées différentes, des opérations successives et d'autres simultanées.</li>
+                            <li>Utiliser des interpolators, des durées différentes, des opérations successives et d'autres simultanées.</li>
 			    <li>Créer une activité avec un bouton centré, et l'animer lors du clic (en utilisant la méthode <strong>view.startAnimation()</strong>)</li>
 			</ul>
                     </div>
                 </div>
 	    </section>
+		<section>
+			<h1>Bonus</h1>
+			Utiliser les animations dans votre ViewFlipper ;)
+		</section>
 	    <section id="projet">
                 <h1>Projet</h1>
                 <p>Voici le cahier des charges du projet proposé:</p>
@@ -157,11 +149,11 @@
 			</ul>
                         <p>Aller plus loin:</p>
                         <ul>
-                            <li>Je secoue mon téléphone -> mélange les chansons (utiliser la méthode shuffle de l'API Collections)</li>
+                            <li>Je secoue mon téléphone -> mélange les chansons</li>
                             <li>Un compteur de pistes (combien de chansons?)</li>
 			    <li>Afficher une liste d'albums et lire un album en particulier</li>
 			    <li>Ranking: Donnez une note (like dislike) par chanson et les faire remonter dans un classement</li>
-			    <li>Les musiques sont taguées (ont de la métadata: nom de l'album, nom de l'artiste, nom de la chanson...): afficher ces informations de façon ergonomique
+			    <li>Les musiques sont taguées (donc elles ont de la métadata: nom de l'album, nom de l'artiste, nom de la chanson...): afficher ces informations de façon ergonomique
 			    <li>Autre: Eclatez vous, faites nous rêver!</li>
 			</ul>
                     </div>
