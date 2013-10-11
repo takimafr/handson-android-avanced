@@ -72,6 +72,7 @@
 						<li class="fragment">Les animations</li>
 					</ol>
 				</section>	
+
 				<section>
 					<section>
 						<h1><i class="icon-android"></i> Introduction</h1>
@@ -84,6 +85,8 @@
 						</aside>
 					</section>
 				</section>
+
+				<!-- CHAPITRE FRAGMENTS -->
 
 				<section>
 					<section>
@@ -240,6 +243,10 @@ public void onNavButtonClick(Button button) {
 					</section>
 				</section>
 
+				<!-- FIN CHAPITRE FRAGMENTS -->
+
+				<!-- CHAPITRE TELEPHONIE -->
+
 				<section>
 					<section>
 						<h1><i class="icon-phone"></i> Téléphonie</h1>
@@ -359,6 +366,11 @@ BitmapFactory.decodeFileDescriptor(fileDescriptor, null, options);
 					</section>
 					
 				</section>
+
+				<!-- FIN CHAPITRE TELEPHONIE -->
+
+				<!-- CHAPITRE SYSTEME DE FICHIER -->
+
 				<section>
 					<section>
 						<h1><i class="icon-file"></i> Système de fichiers</h1>
@@ -373,9 +385,10 @@ BitmapFactory.decodeFileDescriptor(fileDescriptor, null, options);
 						<br>
 						<div style="text-align:left;">
 							<h2><i class="icon-check-sign"></i> Internal storage</h2>
-							<p>Emplacement dédié à l'application, et privé par défaut. Supprimé à la désinstallation de l'application</p>
+							<p>Emplacement dédié à l'application, et privé par défaut. Supprimé à la désinstallation de l'application.</p>
+							<br>
 							<h2><i class="icon-check-sign"></i> External storage</h2>
-							<p>Stockage public et amovible physiquement ou logiquement</p>
+							<p>Stockage public et amovible physiquement ou logiquement.</p>
 						</div>
 						<aside class="notes">
 							Internal: Emplacement dédié à l'application, et privé par défaut. Supprimé à la désinstallation de l'application
@@ -431,6 +444,11 @@ if (Environment.MEDIA_MOUNTED.equals(state)) {
 							</code></pre>
 					</section>
 				</section>
+
+				<!-- FIN CHAPITRE SYSTEME DE FICHIER -->
+
+				<!-- CHAPITRE MULTIMEDIA -->
+
 				<section>
 					<section>
 						<h1><i class="icon-music"></i> Multimédia</h1>
@@ -519,13 +537,19 @@ public void onAudioFocusChange(int focusChange) {
 						</code></pre>
 					</section>
 				</section>
+
+				<!-- FIN CHAPITRE MULTIMEDIA -->
+
+				<!-- CHAPITRE SERVICES -->
+
 				<section>
 					<section>
 						<h1><i class="icon-youtube-play"></i> Services</h1>
 					</section>
 					<section>
 						<h2>Définition</h2>
-						<p>Un service est un composant à utiliser pour les opération longues en tache de fond et qui ne possède pas d'interface graphique.</p>
+						<p>Un service est un composant à utiliser pour les opération longues en tâche de fond et qui ne possède pas d'interface graphique.</p>
+						<br>
 						<p>A déclaré dans le manifest</p>
 						<pre style="font-size:16px;"><code data-trim contenteditable>
 &lt;application ... /&gt;
@@ -536,11 +560,13 @@ public void onAudioFocusChange(int focusChange) {
 					</section>
 					<section>
 						<h2> Type de service </h2>
-							<h3>Intent Service</h3>
-								<p>Permet de gérer des requêtes asynchrones une par une et à la demande.</p>
-							<h3>Bound Service</h3>
-								<p>Service qui offre une interface client/serveur</p>
-								<p>Cycle de vie très lié à celui de l'application</p>
+						<br>
+						<h3>Intent Service</h3>
+						<p>Permet de gérer des requêtes asynchrones une par une et à la demande.</p>
+						<br>
+						<h3>Bound Service</h3>
+						<p>Service qui offre une interface client/serveur.</p>
+						<p>Cycle de vie très lié à celui de l'application.</p>
 					</section>
 					<section>
 						<h2>Cycle de vie</h2>
@@ -548,11 +574,13 @@ public void onAudioFocusChange(int focusChange) {
 					</section>
 					<section>
 						<h2>IntentService</h2>
+						<br>
 						<p>A chaque appel à startService: </p>
-							<pre style="font-size:16px;"><code data-trim contenteditable>
+						<pre style="font-size:16px;"><code data-trim contenteditable>
 void onHandleIntent(Intent intent)
-							</code></pre>
-						<p>Utilisation des méthodes putExtra et get*Extra pour les infos</p>
+						</code></pre>
+						<br>
+						<p>Utilisation des méthodes putExtra et get*Extra pour passer des informations</p>
 							<pre style="font-size:16px;"><code data-trim contenteditable>
 // Envoyer des données
 Intent intent = new Intent(this, MusicService.class);  
@@ -563,6 +591,11 @@ intent.getStringExtra("action");
 							</code></pre>
 						</section>	
 				</section>
+
+				<!-- FIN CHAPITRE SERVICES -->
+
+				<!-- CHAPITRE ANIMATIONS -->
+
 				<section>
 					<section>
 						<h1><i class="icon-play-circle"></i>Animations</h1>
@@ -596,6 +629,9 @@ button.animate().rotation(360);
 					</section>
 
 				</section>			
+
+				<!-- FIN CHAPITRE ANIMATIONS -->
+
 				<section>
 					<h1>THE END</h1>
 					<h3>Merci pour votre attention</h3>
