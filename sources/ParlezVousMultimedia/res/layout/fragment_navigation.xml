@@ -17,7 +17,7 @@
 		android:contentDescription="@string/descr_nav_button"
 		android:src="@drawable/ic_action_9_av_previous" />
 
-	<ImageButton
+	<com.excilys.android.view.PlayButton
 		android:id="@+id/btn_play"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
