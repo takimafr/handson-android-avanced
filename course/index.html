@@ -57,21 +57,6 @@
 						<p>Développeur Android et JEE chez Excilys.</p>
 						<p>Formateur Android.</p>
 					</section>
-					<section>
-						<img src="http://androidkickstartr.com/img/header.png">
-						<a href="http://androidkickstartr.com">http://androidkickstartr.com</a>
-					</section>
-					<section>
-						<h1>AndroidAnnotations</h1>
-						<a href="http://androidannotations.org/">http://androidannotations.org/</a>
-					</section>
-					<section>
-						<h1>Talks</h1>
-						<ul>
-							<li>2012: Devoxx France, Devoxx Anvers, PAUG, Open World Forum.</li>
-							<li>2013: DevConfRussia, DroidCon Paris.</li>
-						</ul>
-					</section>
 				</section>
 
 				<section>
@@ -533,7 +518,51 @@ public void onAudioFocusChange(int focusChange) {
 }
 						</code></pre>
 					</section>
-				</section>	
+				</section>
+				<section>
+					<section>
+						<h1><i class="icon-youtube-play"></i> Services</h1>
+					</section>
+					<section>
+						<h2>Définition</h2>
+						<p>Un service est un composant à utiliser pour les opération longues en tache de fond et qui ne possède pas d'interface graphique.</p>
+						<p>A déclaré dans le manifest</p>
+						<pre style="font-size:16px;"><code data-trim contenteditable>
+&lt;application ... /&gt;
+      &lt;service android:name=".MusicService" /&gt;
+      ...
+&lt;/application/&gt;
+						</code></pre>
+					</section>
+					<section>
+						<h2> Type de service </h2>
+							<h3>Intent Service</h3>
+								<p>Permet de gérer des requêtes asynchrones une par une et à la demande.</p>
+							<h3>Bound Service</h3>
+								<p>Service qui offre une interface client/serveur</p>
+								<p>Cycle de vie très lié à celui de l'application</p>
+					</section>
+					<section>
+						<h2>Cycle de vie</h2>
+						<img src="img/service_lifecycle.png" height="560px">
+					</section>
+					<section>
+						<h2>IntentService</h2>
+						<p>A chaque appel à startService: </p>
+							<pre style="font-size:16px;"><code data-trim contenteditable>
+void onHandleIntent(Intent intent)
+							</code></pre>
+						<p>Utilisation des méthodes putExtra et get*Extra pour les infos</p>
+							<pre style="font-size:16px;"><code data-trim contenteditable>
+// Envoyer des données
+Intent intent = new Intent(this, MusicService.class);  
+intent.putExtra("action", Action.PLAY.name());
+
+// Récupérer les données
+intent.getStringExtra("action");
+							</code></pre>
+						</section>	
+				</section>
 				<section>
 					<section>
 						<h1><i class="icon-play-circle"></i>Animations</h1>
