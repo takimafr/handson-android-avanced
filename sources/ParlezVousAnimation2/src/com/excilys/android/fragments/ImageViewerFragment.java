@@ -31,6 +31,10 @@ public class ImageViewerFragment extends Fragment {
 
 	private AsyncTask<Void, Void, List<Bitmap>> audioFileScannerTask;
 
+	/*
+	 * FRAGMENT LIFECYCLE METHODS
+	 */
+	
 	@Override
 	public void onAttach(Activity activity) {
 		super.onAttach(activity);
@@ -54,27 +58,6 @@ public class ImageViewerFragment extends Fragment {
 		viewFlipper.setOutAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.anim_flipper_out));
 
 		return mLayout;
-	}
-
-	private void toogleProgressBar(boolean show) {
-		if (show)
-			mLayout.findViewById(R.id.progress_bar).setVisibility(View.VISIBLE);
-		else
-			mLayout.findViewById(R.id.progress_bar).setVisibility(
-					View.INVISIBLE);
-	}
-
-	private void updateViewFlipper(List<Bitmap> albumCovers) {
-		ImageView albumView = null;
-
-		for (Bitmap coverBitmap : albumCovers) {
-			albumView = new ImageView(getActivity());
-
-			if (coverBitmap != null) {
-				albumView.setImageBitmap(coverBitmap);
-				viewFlipper.addView(albumView);
-			}
-		}
 	}
 
 	@Override
@@ -101,6 +84,10 @@ public class ImageViewerFragment extends Fragment {
 			audioFileScannerTask = null;
 		}
 	}
+	
+	/*
+	 * METHODS
+	 */
 
 	public void showPrevious() {
 		viewFlipper.showPrevious();
@@ -110,6 +97,31 @@ public class ImageViewerFragment extends Fragment {
 		viewFlipper.showNext();
 	}
 
+	private void toogleProgressBar(boolean show) {
+		if (show)
+			mLayout.findViewById(R.id.progress_bar).setVisibility(View.VISIBLE);
+		else
+			mLayout.findViewById(R.id.progress_bar).setVisibility(
+					View.INVISIBLE);
+	}
+
+	private void updateViewFlipper(List<Bitmap> albumCovers) {
+		ImageView albumView = null;
+
+		for (Bitmap coverBitmap : albumCovers) {
+			albumView = new ImageView(getActivity());
+
+			if (coverBitmap != null) {
+				albumView.setImageBitmap(coverBitmap);
+				viewFlipper.addView(albumView);
+			}
+		}
+	}
+	
+	/*
+	 * ASYNCTASK
+	 */
+	
 	private class AudioFileScannerTask extends
 			AsyncTask<Void, Void, List<Bitmap>> {
 

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<string name="app_name">ParlezVous</string>
+	<string name="action_settings">Settings</string>
+	<string name="hello_world">Hello world!</string>
+	
+	<string name="descr_image_wrapper">Placeholder for album cover</string>
+	<string name="descr_nav_button">Navigation button</string>
+
+	<string name="msg_showing_default">Showing default content</string>
+	
+	<string name="paused">Paused</string>
+	<string name="playing">Playing</string>
+	<string name="next">Next</string>
+	<string name="previous">Previous</string>
+	
+	<string name="song_count">%1$d Songs</string>
+</resources>

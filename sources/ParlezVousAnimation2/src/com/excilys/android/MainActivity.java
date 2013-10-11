@@ -27,8 +27,6 @@ public class MainActivity extends FragmentActivity implements OnNavigationButton
 		return true;
 	}
 	
-	
-
 	@Override
 	public void onNavigationButtonClick(NavigationButton button) {
 		// On récupère le contenu du fragment image_viewer
@@ -48,7 +46,7 @@ public class MainActivity extends FragmentActivity implements OnNavigationButton
 			case PLAY:
 				break;
 			}
-		}		
+		}	
 	}
 
 
