@@ -575,21 +575,81 @@ public void onAudioFocusChange(int focusChange) {
 						</code></pre>
 					</section>
 					<section>
-						<h2> Type de service </h2>
-						<br>
-						<h3>Intent Service</h3>
-						<p>Permet de gérer des requêtes asynchrones une par une et à la demande.</p>
-						<br>
-						<h3>Bound Service</h3>
-						<p>Service qui offre une interface client/serveur.</p>
-						<p>Cycle de vie très lié à celui de l'application.</p>
-					</section>
-					<section>
 						<h2>Cycle de vie</h2>
-						<img src="img/service_lifecycle.png" height="560px">
+						<img src="http://developer.android.com/images/service_lifecycle.png" height="560px">
 					</section>
 					<section>
-						<h2>IntentService</h2>
+						<h1>Type de service </h1>
+					</section>
+					<section>
+						<h2>Started Service</h2>
+						<br>
+						<ul>
+							<li>Doit être explicitement arrêté</li>
+							<li>Ne dépend pas du composant qui démarré le service</li>
+						</ul>
+						<br>		
+						<br>		
+						<p><i class="icon-warning-sign"></i> Attention, créé sur le UI Thread.</p>
+					</section>	
+					<section>
+						<h2>Intent Service</h2>
+						<ul>
+							<li>Executé sur un autre thread,</li>
+							<li>Est killé automatiquement à la fin de son traitement,</li>
+							<li>Permet de gérer des requêtes asynchrones une par une et à la demande.</li>
+						</ul>
+						<br>
+						<br>
+						<p><i class="icon-warning-sign"></i> Attention, seul l'IntentService est executé dans un autre thread.</p>
+					</section>
+					<section>
+						<h1>Bound Service</h1>
+					</section>
+					<section>
+						<h2>Bound Service</h2>
+						<br>
+						<ul>
+							<li>Le cycle est très lié à celui des activity</li>
+							<li>Interface client/serveur</li>
+						</ul>
+						<br>
+						<br>
+						<p><i class="icon-warning-sign"></i> Attention, executé sur le UI Thread.</p>
+					</section>
+					<section>
+						<h2>Bound Service</h2>
+						<img src="http://developer.android.com/images/fundamentals/service_binding_tree_lifecycle.png">
+					</section>
+					<section>
+						<h2>Bound Service</h2>
+						<h3><em><i class="icon-code"></i> Java</em></h3>
+						<pre style="font-size:16px;"><code data-trim contenteditable>
+public class MyBoundService extends Service {
+    private final IBinder mBinder = new LocalBinder();
+
+    // Fait le lien entre l'activity et bound service
+    public class LocalBinder extends Binder {
+        LocalService getService() {
+        	// On retourne notre service 
+            return LocalService.this;
+        }
+    }
+
+    @Override
+    public IBinder onBind(Intent intent) {
+        return mBinder;
+    }
+
+	// disponible à partir de l'activity
+    public int doSomething() {
+    }
+}
+						</code></pre>
+						<a href="http://developer.android.com/guide/components/bound-services.html">Documentation</a>
+					</section>
+					<section>
+						<h2>Bound Service</h2>
 						<br>
 						<p>A chaque appel à startService: </p>
 						<pre style="font-size:16px;"><code data-trim contenteditable>
@@ -606,6 +666,50 @@ intent.putExtra("action", Action.PLAY.name());
 intent.getStringExtra("action");
 							</code></pre>
 						</section>	
+						<section>
+							<h1>Multithreading</h1>
+						</section>
+						<section>
+							<h2>Handler</h2>
+							<ul>
+								<li>Associé à un thread</li>
+								<li>Permet de poster des tâches à executer</li>
+							</ul>
+							<br>
+							<br>
+						<pre><code data-trim contenteditable>
+// Créer un handler
+Handler handler = new Handler();
+
+// Poster une tâche à executer
+handler.post(new Runnable() {
+	@Override
+	public void run() {
+		// ...
+	}
+});
+						</code></pre>
+						ou
+						<pre><code data-trim contenteditable>
+// Poster une tâche à executer avec un délai
+handler.postDelayed(..., 1000);
+						</code></pre>
+						</section>
+						<section>
+							<h2>HandlerThread</h2>
+							<ul>
+								<li>Facilite la création d'un thread pour Handler</li>
+							</ul>
+						<pre><code data-trim contenteditable>
+HandlerThread handlerThread = new HandlerThread("MyHandlerThread");
+handlerThread.start();
+
+Handler handler = new Handler(handlerThread.getLooper());
+
+// Poster vos tâches
+handler.post(...);
+						</code></pre>
+						</section>
 						<section>
 							<h1><i class="icon-android"></i> Exercices</h1>
 						</section>
