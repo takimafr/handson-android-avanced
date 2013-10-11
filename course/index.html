@@ -87,10 +87,9 @@
 						<li class="fragment">Les animations</li>
 					</ol>
 				</section>	
-
 				<section>
 					<section>
-						<h1>Introduction</h1>
+						<h1><i class="icon-android"></i> Introduction</h1>
 					</section>
 					<section>
 						<img src="http://i.imgur.com/MGWYOMy.jpg?1">
@@ -98,12 +97,6 @@
 						<aside class="notes">
 							Publié par NBC News. L'une de 2005 lors des funérailles de Jean-Paul II, l'autre de 2013, pendant la présentation du nouveau pape François.
 						</aside>
-					</section>
-				</section>
-
-				<section>
-					<section>
-						<h1><i class="icon-android"></i> Introduction</h1>
 					</section>
 				</section>
 
@@ -260,18 +253,6 @@ public void onNavButtonClick(Button button) {
 }
 						</code></pre>
 					</section>
-					<section>
-						<h1><i class="icon-android"></i> Exercice</h1>
-					</section>
-					<section>
-						<h2>TODO</h2>
-						<ol>
-							<li>TODO</li>
-							<li>TODO</li>
-							<li>TODO</li>
-							<li>TODO</li>
-						</ol>
-					</section>
 				</section>
 
 				<section>
@@ -350,22 +331,10 @@ manager.listen(new MyListener(), PhoneStateListener.LISTEN_CALL_STATE);
 						</code></pre>
 						<p>Permission pour pouvoir écouter les états du service de téléphonie</p>
 					</section>
-					<section>
-						<h1><i class="icon-android"></i> Exercice</h1>
-					</section>
-					<section>
-						<h2>TODO</h2>
-						<ol>
-							<li>TODO</li>
-							<li>TODO</li>
-							<li>TODO</li>
-							<li>TODO</li>
-						</ol>
-					</section>
 				</section>	
 				<section>
 					<section>
-						<h1>Bitmap</h1>
+						<h1><i class="icon-instagram"></i>Bitmap</h1>
 					</section>
 					<section>
 						<h2>Charger un bitmap</h2>
@@ -567,16 +536,12 @@ public void onAudioFocusChange(int focusChange) {
 				</section>	
 				<section>
 					<section>
-						<h1>Animations</h1>
-					</section>	
-					<section>
-						<h2>View Object Animator</h2>
-						<p>Nouveau système: API 11<p>
-						<pre style="font-size:16px;"><code data-trim contenteditable>
-Button button = (Button) findViewById(R.id.button);
-button.animate().rotation(360);
-						</code></pre>
+						<h1><i class="icon-play-circle"></i>Animations</h1>
 					</section>
+					<section>
+						<p>Principe: Effectuer des opérations élémentaires sur les vues/objets<p>
+						<p style="font-size:20px;">ex:Translation/Rotation/Echelle/Transparence</p>
+					</section>	
 					<section>
 						<h2>Animation Utils</h1>
 						<p>Ancien système: API 1</p>
@@ -592,6 +557,15 @@ Button button = (Button) findViewById(R.id.button);
 button.startAnimation(AnimationUtils.loadAnimation(this, R.anim.animation));
 						</code></pre>
 					</section>
+					<section>
+						<h2>View Object Animator</h2>
+						<p>Nouveau système: API 11<p>
+						<pre style="font-size:16px;"><code data-trim contenteditable>
+Button button = (Button) findViewById(R.id.button);
+button.animate().rotation(360);
+						</code></pre>
+					</section>
+
 				</section>			
 				<section>
 					<h1>THE END</h1>
