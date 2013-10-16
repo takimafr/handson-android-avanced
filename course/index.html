@@ -509,7 +509,8 @@ try {
 						<h2><i class="icon-warning-sign"></i> Audio Focus <i class="icon-warning-sign"></i></h2>
 						<p>Être un bon citoyen Android</p>
 						<pre style="font-size:16px;"><code data-trim contenteditable>
-AudioManager am = ...;
+AudioManager am = (AudioManager) getActivity().getSystemService(Context.AUDIO_SERVICE);
+
 
 // On demande le focus de l'audio
 am.requestAudioFocus(AudioManager.OnAudioFocusChangeListener l, int streamType, ...);
