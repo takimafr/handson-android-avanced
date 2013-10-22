@@ -122,7 +122,6 @@ public class ArticleFragment extends Fragment {
 						<h1>Ajouter un fragment</h1>	
 					</section>
 					<section>
-						<h2>Première solution</h2>
 						<h3><em><i class="icon-code"></i> XML</em></h3>
 						<pre><code data-trim contenteditable>
 &lt;LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -145,7 +144,7 @@ public class ArticleFragment extends Fragment {
 						</code></pre>
 						<aside class="notes">
 					</section>
-					<section>
+					<!--<section>
 						<h2>Deuxième solution</h2>
 						<h3><em><i class="icon-code"></i> XML</em></h3>
 						<pre><code data-trim contenteditable>
@@ -176,8 +175,8 @@ transaction.commit();
 						</code></pre>
 						<aside class="notes">
 						</aside>
-					</section>
-					<section>
+					</section>-->
+					<!--<section>
 						<h2>Remplacer un fragment</h2>
 						<pre><code data-trim contenteditable>// Créer une instance de votre fragment
 NavBarFragment newNavBarFragment = new NavBarFragment();
@@ -191,21 +190,22 @@ transaction.replace(R.id.fragment_container, newNavBarFragment);
 // Valider la transaction
 transaction.commit();
 						</code></pre>
-					</section>
+					</section>-->
 					<section>
 						<h1>Communication Fragment/Activity</h1>
 					</section>
 					<section>
 						<h2>Fragment <i class="icon-long-arrow-right"></i> Activity</h2>
 						<br/>
-						<p>Déclarer une interface</p>
+						<p>1-Déclarer une interface dans votre fragment</p>
+						<p>2-Instancier l'attribut "callback" dans la méthode onAttach</p>
 						<pre><code data-trim contenteditable>
+//Déclaration de l'interface qu'une activité doit implémenter pour que
+//le fragment communique avec celle-ci
 public interface OnNavButtonClickListener {
     public void onNavButtonClick(Button button);
 }
-						</code></pre>
-						<p>Verifier que l'Activity associée implémente cette interface</p>
-						<pre><code data-trim contenteditable>
+
 private OnNavButtonClickListener mCallback;
 
 @Override
@@ -221,10 +221,29 @@ public void onAttach(Activity activity) {
 						</code></pre>
 					</section>
 					<section>
+						<h2>Fragment <i class="icon-long-arrow-right"></i> Activity</h2>
+						<br/>
+						<p>3-Implémenter l'interface du fragment dans votre activité</p>
+						<pre><code data-trim contenteditable>
+//Déclaration de l'interface qu'une activité doit implémenter pour que
+//le fragment communique avec celle-ci
+public class MyActivity extends Activity implements OnNavButtonClickListener {
+
+    public void onNavButtonClick(Button button) {
+	//Le fragment appelera cette méthode dans son callback
+	//Traitement a faire ici
+    }
+
+}
+
+						</code></pre>
+					</section>
+					<section>
 						<h2>Activity <i class="icon-long-arrow-right"></i> Fragment</h2>
-						<pre><code data-trim>// Callback
+						<pre><code data-trim>// Dans l'activité
 public void onNavButtonClick(Button button) {
-  MainFragment fragment = (MainFragment) getFragmentManager().findFragmentById(R.id.main_fragment);
+  MainFragment fragment = 
+	(MainFragment) getFragmentManager().findFragmentById(R.id.main_fragment);
 
   if (mainFragment != null) {
     switch(button) {
@@ -237,7 +256,6 @@ public void onNavButtonClick(Button button) {
         break;
     }
   }
-
 }
 						</code></pre>
 					</section>

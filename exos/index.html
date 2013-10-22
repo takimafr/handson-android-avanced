@@ -28,31 +28,18 @@
                         <p>Indications:</p>
                         <ul>
 
-	                    <li><strong>ImageViewerFragment</strong> contiendra une image</li>
- 			    <li><strong>NavigationFragment</strong> contiendra un bouton qui permettra de changer l'image lorsqu'on clique dessus</li>
+	                    <li><strong>ImageViewerFragment</strong> est un fragment définit par le fichier <strong>fragment_image_viewer.xml</strong> dont le layout contiendra un ViewSwitcher</li>
+ 			    <li><strong>NavigationFragment</strong> est un fragment définit par le fichier <strong>fragment_navigation.xml</strong> dont le layout contiendra contiendra un bouton</li>
                             <li>Utiliser la méthode <strong>setOnClickListener()</strong> sur le bouton</li>
-                            <li>Vous pouvez utiliser un <strong>ViewSwitcher</strong> pour passer d'un élément A à un élément B. Vos deux éléments étant des ImageView.</li>
+                            <li>Vous pouvez utiliser un <strong>ViewSwitcher</strong> pour passer d'un élément A à un élément B</li>
+                            <li>Récupérer le ViewSwitcher dans la classe ImageViewerFragment, et instancier deux ImageViews avec des ressources que vous mettrez dans le dossier /res/drawable du projet. Vous pourrez ensuite binder ces vues au ViewSwitcher via la méthode viewSwitcher.addView()</li>			
                         </ul>
-                        <p>Une bonne façon de commencer est de d'abord mettre en place vos layouts avec les fragments et vérifier qu'ils s'affichent bien. Par la suite, c'est une bonne pratique de déclarer une interface dans le fragment, et de l'implémenter dans l'activité pour qu'elle effectue les actions que vous voulez. (cf cours)</p>
                     </div>
+                        <p>Une bonne façon de commencer est de d'abord mettre en place vos layouts avec les fragments et vérifier qu'ils s'affichent bien. Par la suite, c'est une bonne pratique de déclarer une interface dans le fragment, et de l'implémenter dans l'activité pour qu'elle effectue les actions que vous voulez. (cf cours)</p>
                 </div>
             </section>
-            <section id="exercice2">
-                <h1>Exercice 2 - Téléphonie</h1>
-                <p>Le but de cette exercice est de comprendre comment utiliser les intents standards liés à la téléphonie dans Android.</p>
-                <div class="media">
-                    <img class="media-object pull-left" src="img/exo2.1.png" width="220px" />
-                    <div class="media-body">
-                        <p>Indications:</p>
-			<p>Pour cela, vous allez développer une application permettant de passer un appel en entrant le numéro dans un champ texte puis utiliser l'intent ACTION_CALL, ou l'intent ACTION_DIAL. Vous implémenterez ensuite un listeneur qui loggera les états de l'appel </p>
-                        <ul>
-                            <li>Documentation de l'intent <strong><a href="http://developer.android.com/reference/android/content/Intent.html#ACTION_DIAL" target="_BLANK">ACTION_DIAL</a></strong></li>
-                            <li>Documentation de l'intent <strong><a href="http://developer.android.com/reference/android/content/Intent.html#ACTION_CALL" target="_BLANK">ACTION_CALL</a></strong></li>
-                    </div>
-                </div>
-	    </section>
-            <section id="exercice31">
-                <h1>Exercice 3.1 - File System</h1>
+            <section id="exercice2.1">
+                <h1>Exercice 2.1 - File System</h1>
                 <p>Le but de cette exercice est de prendre en main le fonctionnement du système de fichiers d'android.</p>
                 <div class="media">
                     <img class="media-object" src="img/exo3.1.png" />
@@ -62,12 +49,17 @@
                             <li>Dans un premier temps, montez l'image sdcard.img dans votre Virtual Device (me demander le fichier)</li>
                             <li>Partie 1: Créer une méthode permettant de lire récursivement le contenu du répertoire Music, et afficher dans la console</li>
 			    <li>Partie 2: Créer une méthode renvoyant une List&lt;String&gt; contenant les chemins absolus des <strong>images</strong> du répertoire Music (et sous répertoires)</li>
+			    <li>Pour vous aider, le script ci-dessous est la fonction récursive de parcours de répertoire</li>
 			</ul>
                     </div>
+<div id="showCode1"><h4><strong>Voir le code</strong></h4></div>
+<div id="hidden1" style="display: none;">
+			<script src="https://gist.github.com/loicortola/458442fbd9603065c128.js"></script>
+</div>
                 </div>
 	    </section>
-	    <section id="exercice32">
-                <h1>Exercice 3.2 - File System</h1>
+	    <section id="exercice2.2">
+                <h1>Exercice 2.2 - File System</h1>
                 <p>Il s'agira maintenant d'appliquer vos connaissances sur le projet précédent.</p>
                 <div class="media">
                     <div class="media-body">
@@ -75,36 +67,51 @@
                         <p>Indications:</p>
 			<ul>
       			    <li>Changer le ViewSwitcher avec un ViewFlipper (qui peut gérer plus de deux images)</li>
-      			    <li>Modifier la méthode créée en Exo3 Partie 2 et renvoyer une List&lt;Bitmap&gt; qui vous servira à instancier les vues</li>
+      			    <li>Modifier la méthode créée en Exo2 Partie 2 et renvoyer une List&lt;Bitmap&gt; qui vous servira à instancier les vues</li>
 			    <li>Peupler cette liste à l'aide d'une AsyncTask</li>
 			    <li>Utiliser la méthode <strong>file.getAbsolutePath()</strong> pour instancier vos bitmaps</li>
 			    <li>Utiliser la méthode <strong>setImageBitmap()</strong> pour insérer la bitmap dans la vue imageView</li>
-			</ul>
-			    
+			    <li>Utiliser le code ci dessous qui contient un squelette de votre AsyncTask</li>
+			</ul>			    
                     </div>
+<div id="showCode2"><h4><strong>Voir le code</strong></h4></div>
+<div id="hidden2" style="display: none;">
+<script src="https://gist.github.com/loicortola/73455cca39a0ee4ba0aa.js"></script>
+</div>
                 </div>
 	    </section>
- 	    <section id="exercice4">
-                <h1>Exercice 4 - Multimédia</h1>
+ 	    <section id="exercice3">
+                <h1>Exercice 3 - Multimédia</h1>
                 <p>Le but de cette exercice est d'implémenter les fonctionnalités de base du media player d'android (play/pause) dans le projet précédent</p>
                 <div class="media">
                     <div class="media-body">
                         <p>Indications:</p>
                         <ul>
                             <li>Dans un premier temps, créez un objet AudioPlayer. Ce sera l'objet métier qui pilotera le média player. Une bonne API pour cet objet est la suivante: </li>
+<div id="showCode3"><h4><strong>Voir le code</strong></h4></div>
+<div id="hidden3" style="display: none;">
 <script src="https://gist.github.com/jeremiemartinez/6936644.js"></script>
+</div>
 			    <li>Vous allez devoir passer la liste de fichiers audio à votre audioPlayer</li>
 			    <li>N'oubliez pas de gérer l'AudioFocus (cf cours) pour ne pas perturber l'utilisation du téléphone</li>
 			    <li>Ajoutez un bouton Play dans votre NavigationFragment pour gérer le média player</li>
 				<li>A chaque clic sur le bouton, une nouvelle musique est jouée.</li>
-				<li> Le code du Wrapper est le suivant:</li>
+				<li>Pour bien associer un fichier audio à une pochette, nous allons créer l'objet AudioFileWrapper suivant:</li>
+<div id="showCode4"><h4><strong>Voir le code</strong></h4></div>
+<div id="hidden4" style="display: none;">
 <script src="https://gist.github.com/jeremiemartinez/7004347.js"></script>
+</div>
+    <li>Votre scanner de fichiers doit maintenant ressembler au code suivant:</li>
+<div id="showCode5"><h4><strong>Voir le code</strong></h4></div>
+<div id="hidden5" style="display: none;">
+<script src="https://gist.github.com/loicortola/d15e1d385d38a1cb65f5.js"></script>
+</div>
 			</ul>
                     </div>
                 </div>
 	    </section>
-	    <section id="exercice51">
-                <h1>Exercice 5 - Services</h1>
+	    <section id="exercice4.1">
+                <h1>Exercice 4.1 - Services</h1>
                 <p>Le but de cette exercice est de comprendre le fonctionnement du cycle de vie d'un service et de remplacer l'AsyncTask utilisée pour loader les images/musiques.</p>
                 <div class="media">
                     <div class="media-body">
@@ -118,7 +125,7 @@
                 </div>
            </section>
 	    <section id="exercice6">
-                <h1>Exercice 6 - Animations</h1>
+                <h1>Exercice 5 - Animations</h1>
                 <p>Vous allez dynamiser votre interface en utilisant les animations</p>
                 <div class="media">
                     <img class="media-object pull-left" src="img/exo6.1.png" width="220px" />
@@ -132,10 +139,25 @@
                     </div>
                 </div>
 	    </section>
-		<section>
+<section>
 			<h1>Bonus</h1>
 			Utiliser les animations dans votre ViewFlipper ;)
 		</section>
+<section id="exercice2">
+                <h1>Exercice 6 - Téléphonie</h1>
+                <p>Le but de cette exercice est de comprendre comment utiliser les intents standards liés à la téléphonie dans Android.</p>
+                <div class="media">
+                    <img class="media-object pull-left" src="img/exo2.1.png" width="220px" />
+                    <div class="media-body">
+                        <p>Indications:</p>
+			<p>Pour cela, vous allez développer une application permettant de passer un appel en entrant le numéro dans un champ texte puis utiliser l'intent ACTION_CALL, ou l'intent ACTION_DIAL. Vous implémenterez ensuite un listeneur qui loggera les états de l'appel </p>
+                        <ul>
+                            <li>Documentation de l'intent <strong><a href="http://developer.android.com/reference/android/content/Intent.html#ACTION_DIAL" target="_BLANK">ACTION_DIAL</a></strong></li>
+                            <li>Documentation de l'intent <strong><a href="http://developer.android.com/reference/android/content/Intent.html#ACTION_CALL" target="_BLANK">ACTION_CALL</a></strong></li>
+                    </div>
+                </div>
+	    </section>
+		
 	    <section id="projet">
                 <h1>Projet</h1>
                 <p>Voici le cahier des charges du projet proposé:</p>
@@ -165,5 +187,36 @@
 
                 <script src="js/bootstrap.min.js"></script>
                 <script src="http://code.jquery.com/jquery-latest.js"></script>
+		<script>
+$( "#showCode1" ).click(function() {
+  $("#hidden1").toggle( "slow", function() {
+    // Animation complete.
+  });
+});
+
+$( "#showCode2" ).click(function() {
+  $("#hidden2").toggle( "slow", function() {
+    // Animation complete.
+  });
+});
+
+$( "#showCode3" ).click(function() {
+  $("#hidden3").toggle( "slow", function() {
+    // Animation complete.
+  });
+});
+
+$( "#showCode4" ).click(function() {
+  $("#hidden4").toggle( "slow", function() {
+    // Animation complete.
+  });
+});
+
+$( "#showCode5" ).click(function() {
+  $("#hidden5").toggle( "slow", function() {
+    // Animation complete.
+  });
+});
+</script>
 </body>
 </html>
